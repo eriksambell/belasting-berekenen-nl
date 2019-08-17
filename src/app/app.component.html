@@ -1,0 +1,12 @@
+<div id="wrapper">
+  <app-header></app-header>
+
+  <app-hero (formSubmitted)="childEventClicked($event)"></app-hero>
+
+  <main>
+    <app-results [event]="clickedEvent"></app-results>
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer (formSubmitted)="childEventClicked(undefined)"></app-footer>
+</div>

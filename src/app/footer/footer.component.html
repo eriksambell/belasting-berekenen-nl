@@ -1,0 +1,31 @@
+<footer>
+  <div class="footer-container">
+    <section class="footer-descr">
+      <h2 class="logo"><a routerLink="/" (click)="toTop()">Belasting-berekenen.nl</a></h2>
+      <p>Belasting-berekenen.nl maakt inzichtelijk waar uw belastinggeld naar toe gaat. Wij gebruiken hiervoor de geschatte belasting over uw inkomen, en de meest recente miljoenennota.</p>
+    </section>
+    <div class="footer-col2">
+      <section class="footer-ql">
+        <h3>Quick Links</h3>
+        <div>
+          <ul>
+            <li><a (click)="clickMenu()" routerLink="/">Home</a></li>
+            <li><a (click)="clickMenu()" routerLink="/disclaimer">Disclaimer</a></li>
+            <li><a (click)="clickMenu()" routerLink="/privacy-policy">Privacy policy</a></li>
+          </ul>
+        </div>
+      </section>
+      <section class="footer-contact">
+        <h3>Contact</h3>
+          <div>
+            <ul>
+              <li class="mail"><a href="mailto:info@belasting-berekenen.nl">info@belasting-berekenen.nl</a></li>
+            </ul>
+          </div>
+      </section>
+    </div>
+  </div>
+  <section class="footer-copyright">
+    <p>{{ year }} &copy; Belasting-berekenen.nl</p>
+  </section>
+</footer>

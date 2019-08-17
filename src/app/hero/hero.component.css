@@ -1,0 +1,175 @@
+/***********************
+*****     HERO     *****
+***********************/
+#hero {
+  width: 100%;
+  background-color: #C3C3E5;
+  padding: 20px 0; 
+}
+
+#hero h2 {
+  line-height: 1.3;
+  font-weight: 300;
+  font-size: 140%;
+  margin-bottom: 15px;
+}
+  
+.hero-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+form {
+  display: flex;
+  flex-direction: column; 
+}
+
+label, input {
+  margin: 8px 0;
+}
+
+label {
+  display: inline-block;
+  width: 65px;
+  line-height: 1.8; 
+}
+
+#income {width: 100px; }
+#age    {width: 35px; }
+
+input {
+  z-index: 20;
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  resize: none;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+  line-height: 1.8;
+  background-color: rgba(255, 255, 255, 0);
+  position: relative; 
+}
+
+input:focus {outline: 0; }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Error messages */
+
+@keyframes bounce {
+  0%, 100% {font-size: 15px;}
+  50% {font-size: 19px;}
+}
+
+.popup-symbol {
+  cursor: pointer;
+  position: relative;
+  transition: all 200ms ease;
+  top: 2px;
+  left: 6px;
+  color: rgba(68, 50, 102,0.8);
+ }
+
+.popup-symbol::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f059";
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.ng-invalid.ng-dirty + .popup-symbol::after {
+  content: "\f06a";
+  font-size: 19px;
+  position: relative;
+  transition: all 200ms ease;
+  animation: bounce 1s infinite;
+}
+
+.alert {
+  display: inline-block;
+  background-color: rgba(68, 50, 102,0.8);
+  color: #fff; 
+  padding: 5px 12px;
+  text-align: center;
+  transition: opacity 250ms ease;
+  margin-bottom: 0;
+  left: 10px;
+}
+
+.alert--show {
+  opacity: 1;
+  height: 35.3px;
+}
+.alert--hide {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* submit button */
+
+.btn {
+  background-color: rgba(68, 50, 102,0.8);
+  border: 1px solid rgb(68, 50, 102);
+  width: 150px;
+  align-self: flex-end;
+}
+
+.btn:hover {
+  background-color: rgba(68, 50, 102,1.0);
+}
+
+.btn::after {
+  content: "\f054";
+  font-family: "Font Awesome 5 Free";
+  margin-left: 10px;
+  position: relative;
+  top: 1px;
+  font-size: 100%;
+  font-weight: 600;
+  transition: all 300ms ease;
+}
+
+.btn:not(:disabled):hover::after {
+  margin-left: 14px;
+  transition: all 300ms ease;
+}
+
+.btn:disabled {
+  background-color: #666;
+  color: #999;
+  border-color: #999;
+}
+
+@media screen and (min-width: 768px) {
+  #hero {
+    padding: 15px 0 25px 0; 
+  }
+
+  form {
+    flex-direction: row;
+    width: 100%;
+    position: relative; 
+  }
+
+  .form-field {
+    margin-right: 40px; 
+  }
+
+  .btn {
+    margin-top: 10px; 
+    position: absolute;
+    right: 0;
+    top: -13px; 
+  } 
+}
