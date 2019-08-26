@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,15 +9,11 @@ export class FooterComponent {
 
   year = new Date().getFullYear();
 
-  @Output() eventClicked  = new EventEmitter<String>();
+  @Output() dataEvent = new EventEmitter<any>();
 
   clickMenu(){
-    this.dataService.setData(undefined);
-    this.toTop();
-    this.eventClicked.emit(undefined);
+    this.dataEvent.emit(undefined);
   }
-  toTop(){
-    window.scroll(0,0);
-  }
-  constructor(private dataService:DataService) { }
+
+  constructor() { }
 }

@@ -8,5 +8,5 @@
     <router-outlet></router-outlet>
   </main>
 
-  <app-footer (formSubmitted)="childEventClicked(undefined)"></app-footer>
+  <app-footer (dataEvent)="receiveData($event)"></app-footer>
 </div>
