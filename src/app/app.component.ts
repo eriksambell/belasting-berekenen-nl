@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
  
-  clickedEvent: Event;
+  data:number = 0;
 
-  childEventClicked(event: Event){
-    this.clickedEvent = event;
+  receiveData(event){
+    this.data = event;
   }
 
   ngOnInit() {

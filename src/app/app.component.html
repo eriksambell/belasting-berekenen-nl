@@ -1,10 +1,10 @@
 <div id="wrapper">
   <app-header></app-header>
 
-  <app-hero (formSubmitted)="childEventClicked($event)"></app-hero>
+  <app-hero (dataEvent)="receiveData($event)"></app-hero>
 
   <main>
-    <app-results [event]="clickedEvent"></app-results>
+    <app-results [data]="data"></app-results>
     <router-outlet></router-outlet>
   </main>
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService} from '../data.service';
 
 @Component({
   selector: 'app-results',
@@ -9,20 +8,11 @@ import { DataService} from '../data.service';
 
 export class ResultsComponent implements OnInit {
 
-  constructor(private dataService:DataService) { }
+  constructor() { }
 
-  private _event: Event;
-
-  @Input()
- 
-  get event(): Event {
-    return this._event;
-  }
-  
-  set event(event: Event) {
-    this.calculate(event);
-    this._event = event;
-  }
+  // alternative method for inputting data from hero
+  @Input() data: number;
+  // end of alternative method
 
   budgetTotal:number;
   totalTax:number;
@@ -46,18 +36,10 @@ export class ResultsComponent implements OnInit {
     {long:"Landbouw, Natuur en Voedselkwaliteit", short:"Landbouw & natuur", amount:0.8}
   ]
 
-  calculate(event: Event){
-    if(event !== undefined){     
-      // get data from dataService
-      this.totalTax = this.dataService.getData();
-
-      // calculate total budget
-      let amounts = this.budget.map( x => x.amount);
-      this.budgetTotal = amounts.reduce((total, num) => total + num);
-
-      // determine positions of boxes
-      this.setPositions();
-    }
+  calcTotal(){
+    let amounts = this.budget.map( x => x.amount);
+    this.budgetTotal = amounts.reduce((total, num) => total + num);
+    this.setPositions();
   }
 
   setPositions(){
@@ -132,6 +114,7 @@ export class ResultsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.calcTotal();
   } 
 
 }

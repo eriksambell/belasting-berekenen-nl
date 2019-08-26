@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HeroComponent } from './hero/hero.component';
+
+// not used anymore!
+// data service was used in previous version
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +17,5 @@ export class DataService {
   getData():any {
     return this.data;
   }
-  // constructor() { }
+  constructor() { }
 }

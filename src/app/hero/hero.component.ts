@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HeroForm } from '../hero-form';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-hero',
@@ -14,12 +13,13 @@ export class HeroComponent implements OnInit {
   ageInput = new HeroForm (null, "Leeftijd", "age", "Uw leeftijd", false, 2);
   inputs = [this.incomeInput, this.ageInput];
 
-  @Output() formSubmitted  = new EventEmitter<Event>();
-
-  submit(event: Event){
+  // send input to results component
+  inputData:number = 0;
+  @Output() dataEvent = new EventEmitter<any>();
+  sendData(){
     let inputData = this.totalTax(this.incomeInput.value * 12, this.ageInput.value);
-    this.dataService.setData(inputData);
-    this.formSubmitted.emit(event);
+    this.dataEvent.emit(inputData)
+    console.log("geklikt!", inputData);
   }
 
   // tax input
@@ -54,7 +54,7 @@ export class HeroComponent implements OnInit {
     return schijvenTotal;
   }
 
-  constructor(private dataService:DataService) { }
+  constructor() { }
 
   ngOnInit() {  }
 
