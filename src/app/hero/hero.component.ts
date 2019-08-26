@@ -14,12 +14,12 @@ export class HeroComponent implements OnInit {
   inputs = [this.incomeInput, this.ageInput];
 
   // send input to results component
-  inputData:number = 0;
+  
   @Output() dataEvent = new EventEmitter<any>();
   sendData(){
     let inputData = this.totalTax(this.incomeInput.value * 12, this.ageInput.value);
-    this.dataEvent.emit(inputData)
-    console.log("geklikt!", inputData);
+    let schijvenTotal = inputData.reduce((total, num) => total + num);
+    this.dataEvent.emit(schijvenTotal);
   }
 
   // tax input
@@ -50,8 +50,7 @@ export class HeroComponent implements OnInit {
     const last = this.tarieven.vanaf.length - 1;
     schijven[last] = tarief[last] * (income - this.tarieven.vanaf[last]) / 12;
 
-    let schijvenTotal = schijven.reduce((total, num) => total + num);
-    return schijvenTotal;
+    return schijven;
   }
 
   constructor() { }
