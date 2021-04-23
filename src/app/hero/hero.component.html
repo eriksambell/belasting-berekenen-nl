@@ -3,21 +3,20 @@
     <h2>Bereken nu!</h2>
     <form #heroInput="ngForm" (ngSubmit)="sendData()">
       <div class="form-field" *ngFor="let input of inputs">
-          <label for="{{ input.code }}">{{ input.text }}:</label>
-          <input id="{{ input.code }}" maxlength="{{ input.maxlength }}" type="text" pattern="[0-9]*" required
-            required [(ngModel)]="input.value" name="{{ input.code }}">
-          <span class="popup-symbol" 
-            (mouseenter)="input.popup = true"
-            (mouseleave)="input.popup = false"
-          ></span>
-          <p class="alert alert-primary alert-{{input.code}}" role="alert" [ngClass]="{
+        <label for="{{ input.code }}">{{ input.text }}:</label>
+        <input id="{{ input.code }}" maxlength="{{ input.maxlength }}" type="text" pattern="[0-9]*" required
+          [(ngModel)]="input.value" name="{{ input.code }}">
+        <span class="popup-symbol" (mouseenter)="input.popup = true" (mouseleave)="input.popup = false">
+        </span>
+        <p class="alert alert-primary alert-{{input.code}}" role="alert" [ngClass]="{
             'alert--show': input.popup,
             'alert--hide': !input.popup
-          }">{{ input.alert }}</p>
+          }">{{ input.alert }}
+        </p>
       </div>
-      <button type="submit" class="btn btn-primary" 
-        [disabled]="!heroInput.form.valid">
-      Bereken</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!heroInput.form.valid">
+        Bereken
+      </button>
     </form>
   </div>
 </section>
