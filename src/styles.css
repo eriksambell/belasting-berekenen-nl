@@ -236,45 +236,6 @@ h2, h3 {
   transition: all 500ms ease-in; 
 }
 
-/* .accordion {
-  width: 80%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 50px 0; }
-
-.accordion h3 {
-  padding: 20px 35px 20px 10px;
-  border-top: 1px solid #8C489F;
-  border-bottom: 1px solid #8C489F;
-  position: relative;
-  margin-top: -1px;
-  cursor: pointer; }
-
-.accordion h3::after {
-  content: "+";
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 250%;
-  font-weight: 300;
-  font-family: "Dosis", sans-serif; }
-
-.accordion p {
-  padding: 0 10px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 300ms ease; }
-
-.accordion p::before,
-.accordion p::after {
-  content: "";
-  display: block;
-  height: 20px; }
-  
-.accordion p.active {
-  max-height: 500px;
-  transition: max-height 750ms ease; } */
-
 /***********************
 *****    CONTENT   *****
 ***********************/
