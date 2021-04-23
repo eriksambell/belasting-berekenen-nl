@@ -14,6 +14,10 @@ header {
   display: flex; 
 }
 
+header {
+  height: 132px;
+}
+
 .header-image {
   width: 70px;
   flex-shrink: 0; 

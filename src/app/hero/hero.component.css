@@ -1,10 +1,12 @@
 /***********************
 *****     HERO     *****
 ***********************/
+
 #hero {
+  height: 130px;
   width: 100%;
   background-color: #C3C3E5;
-  padding: 20px 0; 
+  padding: 20px 0;
 }
 
 #hero h2 {
@@ -13,17 +15,17 @@
   font-size: 140%;
   margin-bottom: 15px;
 }
-  
+
 .hero-container {
   width: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 form {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 label, input {
@@ -33,11 +35,16 @@ label, input {
 label {
   display: inline-block;
   width: 65px;
-  line-height: 1.8; 
+  line-height: 1.8;
 }
 
-#income {width: 100px; }
-#age    {width: 35px; }
+#income {
+  width: 100px;
+}
+
+#age {
+  width: 35px;
+}
 
 input {
   z-index: 20;
@@ -51,22 +58,27 @@ input {
   border-bottom-color: rgba(0, 0, 0, 0.5);
   line-height: 1.8;
   background-color: rgba(255, 255, 255, 0);
-  position: relative; 
+  position: relative;
 }
 
-input:focus {outline: 0; }
+input:focus {
+  outline: 0;
+}
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Error messages */
 
 @keyframes bounce {
-  0%, 100% {font-size: 15px;}
-  50% {font-size: 19px;}
+  0%, 100% {
+    font-size: 15px;
+  }
+  50% {
+    font-size: 19px;
+  }
 }
 
 .popup-symbol {
@@ -75,8 +87,8 @@ input[type=number]::-webkit-outer-spin-button {
   transition: all 200ms ease;
   top: 2px;
   left: 6px;
-  color: rgba(68, 50, 102,0.8);
- }
+  color: rgba(68, 50, 102, 0.8);
+}
 
 .popup-symbol::after {
   font-family: "Font Awesome 5 Free";
@@ -86,7 +98,7 @@ input[type=number]::-webkit-outer-spin-button {
   transition: all 200ms ease;
 }
 
-.ng-invalid.ng-dirty + .popup-symbol::after {
+.ng-invalid.ng-dirty+.popup-symbol::after {
   content: "\f06a";
   font-size: 19px;
   position: relative;
@@ -96,8 +108,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .alert {
   display: inline-block;
-  background-color: rgba(68, 50, 102,0.8);
-  color: #fff; 
+  background-color: rgba(68, 50, 102, 0.8);
+  color: #fff;
   padding: 5px 12px;
   text-align: center;
   transition: opacity 250ms ease;
@@ -109,6 +121,7 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
   height: 35.3px;
 }
+
 .alert--hide {
   opacity: 0;
   height: 0;
@@ -119,14 +132,14 @@ input[type=number]::-webkit-outer-spin-button {
 /* submit button */
 
 .btn {
-  background-color: rgba(68, 50, 102,0.8);
+  background-color: rgba(68, 50, 102, 0.8);
   border: 1px solid rgb(68, 50, 102);
   width: 150px;
   align-self: flex-end;
 }
 
 .btn:hover {
-  background-color: rgba(68, 50, 102,1.0);
+  background-color: rgba(68, 50, 102, 1.0);
 }
 
 .btn::after {
@@ -153,23 +166,20 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media screen and (min-width: 768px) {
   #hero {
-    padding: 15px 0 25px 0; 
+    padding: 15px 0 25px 0;
   }
-
   form {
     flex-direction: row;
     width: 100%;
-    position: relative; 
+    position: relative;
   }
-
   .form-field {
-    margin-right: 40px; 
+    margin-right: 40px;
   }
-
   .btn {
-    margin-top: 10px; 
+    margin-top: 10px;
     position: absolute;
     right: 0;
-    top: -13px; 
-  } 
+    top: -13px;
+  }
 }

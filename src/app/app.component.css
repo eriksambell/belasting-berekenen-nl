@@ -1,1 +1,7 @@
-h2 {color: hotpink;}
+main {
+    min-height: calc(100vh - 585px);
+}
+
+h2 {
+    color: hotpink;
+}
