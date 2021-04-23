@@ -1,0 +1,41 @@
+
+/***********************
+*****    HEADER    *****
+***********************/
+header {
+  width: 100%;
+  position: relative;
+  background-color: #443266; 
+}
+
+.header-container {
+  width: 90%;
+  padding: 20px 0 30px;
+  display: flex; 
+}
+
+header {
+  height: 132px;
+}
+
+.header-image {
+  width: 70px;
+  flex-shrink: 0; 
+}
+
+.header-image img {
+  height: 60px; 
+}
+
+.header-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+@media screen and (min-width: 768px) {
+    
+  .header-container {padding-bottom: 50px;}
+  .logo {font-size: 200%; }
+  
+}

@@ -7,13 +7,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  year: number;
+  currentYear: number;
 
   @Output() 
   dataEvent = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.year = new Date().getFullYear()
+    this.currentYear = new Date().getFullYear()
   }
 
   public onClickFooterMenuItem(): void {

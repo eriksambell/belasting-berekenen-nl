@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HeroForm } from '../hero-form';
+import { HeroForm } from '../../shared/hero-form';
 
 @Component({
   selector: 'app-hero',

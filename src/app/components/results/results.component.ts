@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BUDGET } from '../shared/budget.constant';
+import { BUDGET } from '../../shared/budget.constant';
 
 @Component({
   selector: 'app-results',

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContentComponent } from './content/content.component';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { DisclaimerComponent } from './disclaimer/disclaimer.component';
-
+import { ContentComponent } from './components/content/content.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
 
 const routes: Routes = [
   { path: '', component: ContentComponent },
@@ -13,7 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{
+  imports: [RouterModule.forRoot(routes, {
     scrollPositionRestoration: 'enabled'
   })],
   exports: [RouterModule]
