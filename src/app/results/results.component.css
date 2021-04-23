@@ -1,14 +1,15 @@
 /***********************
 ***** GRAPH RESULTS ****
 ***********************/
+
 #results {
-    background-color: #F8F7FF;
-    transition: all 1000ms ease; 
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 100px;
-    overflow: hidden;
-  }
+  background-color: #F8F7FF;
+  transition: all 1000ms ease;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 100px;
+  overflow: hidden;
+}
 
 .box {
   position: absolute;
@@ -33,7 +34,7 @@
 .box-number:hover {
   background-color: #443266;
   background-image: radial-gradient(circle at bottom right, rgba(195, 195, 229, 0.3) 10%, #443266);
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
 }
 
 .box-number p {
@@ -56,20 +57,18 @@
   padding: 8px 10px;
   z-index: 100;
   pointer-events: none;
-  /* left: 50%; */
   top: calc(100% + 5px);
   transform: translate(-50%, 0);
 }
 
-.box-info > span {
+.box-info>span {
   font-size: 0;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 8px solid transparent;
-  border-right: 8px solid transparent;  
+  border-right: 8px solid transparent;
   border-bottom: 8px solid rgba(0, 0, 0, 0.75);
   top: -8px;
-  /* left: calc(50% - 4px); */
   position: absolute;
 }
 
@@ -83,7 +82,7 @@
   font-size: 16px;
   font-weight: 500;
 }
- 
+
 .results-container {
   max-width: 666px;
   width: 100%;
@@ -94,79 +93,32 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 20px 0; 
+  margin: 20px 0;
 }
 
-.results-total-text,
-.results-total-number {
+.results-total-text, .results-total-number {
   font-family: "Dosis", sans-serif;
-  font-size: 100%; 
+  font-size: 100%;
 }
 
 .results-total-number {
   font-weight: 700;
   color: #443266;
-  margin: 0 8px; 
+  margin: 0 8px;
 }
 
 .results-graph {
-  width: 100%; 
+  width: 100%;
   height: 0;
   transition: height 500ms ease;
 }
 
-/* .results-graph-box {
-  overflow: visible;
-}
-
-.results-graph-box {
-  position: relative;
-}
-
-.results-graph-box span {
-  position: absolute;
-  background-color: rgba(0,0,0,0.6);
-  width: 150px;
-  padding: 5px 8px;
-  text-align: center;
-  color: #fff;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, 0);
-}
-
- svg text {
-  font-family: "Dosis", sans-serif;
-  pointer-events: none;
-}
-
-.info rect {fill: rgba(0,0,0,0.6)};
-.info text {fill: #fff;}
-
-svg circle {
-  stroke: rgba(195,195,229,0.5);
-  stroke-width: 3px;
-  cursor: pointer;
-  fill: rgba(195,195,229, 1);
-  transition: all 500ms ease;
-}
-
-svg circle:hover {
-  fill: #443266;
-  transition: all 500ms ease; 
-} */
-
-/* svg circle:hover + text {
-  fill: #fff;
-} */
-
-
-
 /*****************
 * MEDIUM DEVICES *
 ******************/
+
 @media screen and (min-width: 480px) {
-    .results-total-text,
-    .results-total-number {
-      font-size: 110%; }
-   }
+  .results-total-text, .results-total-number {
+    font-size: 110%;
+  }
+}

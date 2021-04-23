@@ -1,11 +1,11 @@
-<section *ngIf="data" id="results" #results (window:resize)="onResize($event)" [style.padding-right.px]="15">
+<section #results *ngIf="data" id="results" (window:resize)="onResize($event)" [style.padding-right.px]="15">
   <div class="results-container">
     <div class="results-total">
       <p class="results-total-text">U betaalt maandelijks</p>
       <p class="results-total-number">&euro; {{ data | number: '1.0-0' }}</p>
       <p class="results-total-text">inkomensbelasting</p>
     </div>
-    <div class="results-graph" #graph [style.height.px]="levels[levels.length-1].height / 100 * graph.offsetWidth">
+    <div #graph class="results-graph" [style.height.px]="levels[levels.length-1].height / 100 * graph.offsetWidth">
       <div #container class="box" *ngFor="let line of budget; index as i" [style.width.%]="setWidth(line.amount)"
         [style.height.px]="setWidth(line.amount)/100 * graph.offsetWidth"
         [style.left.px]="positions[i].left/100 * graph.offsetWidth"
@@ -21,7 +21,7 @@
           <span [style.left.px]="0.5 * boxInfo.clientWidth - 8 - correctHover(container, results)">arrow up</span>
           <p>
             U betaalt &euro;{{ line.amount / budgetTotal * data | number: '1.2-2' }}/maand voor
-            <span>{{ line.long }}</span>
+            <span>{{ line.long}}</span>
           </p>
         </div>
       </div>
