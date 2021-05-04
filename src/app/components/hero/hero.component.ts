@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { NORMAL_TAX_RATES, PENSION_AGE, PENSION_TAX_RATES } from 'src/app/shared/tax.constant';
 import { HeroForm } from '../../shared/hero-form';
 
 @Component({
@@ -50,15 +51,43 @@ export class HeroComponent {
     const last = this.tarieven.vanaf.length - 1;
     schijven[last] = tarief[last] * (income - this.tarieven.vanaf[last]) / 12;
 
+    console.log(schijven);
+
     return schijven;
   }
 
 }
 
-class CalculateTax {
-  schijven: number[] = [];
+export class CalculateTax {
+  brackets: number[] = [];
+  taxRates: {
+    box: number,
+    lowerBound: number,
+    upperBound: number,
+    rate: number
+  }[];
 
-  constructor(age: number, income: number) {
-    
+  constructor(income: number, age: number) {
+    this.taxRates = age < PENSION_AGE ? NORMAL_TAX_RATES : PENSION_TAX_RATES;
+    this.brackets = this.calcBrackets(income);
   }
+
+  private calcBrackets(income: number): number[] {
+    if (!income || income === 0) return [0];
+    if (income <= this.taxRates[0].upperBound) return [income];
+
+    const box: number = this.taxRates.find(bracket => income >= bracket.lowerBound && income <= bracket.upperBound).box;
+    const brackets = [this.taxRates[0].upperBound * this.taxRates[0].rate];
+    let remainingIncome = income - this.taxRates[0].upperBound;
+    for (let i = 1; i < box; i++) {
+      if (i === box - 1) {
+        brackets[i] = remainingIncome * this.taxRates[i].rate
+      } else {
+        remainingIncome = income - this.taxRates[i].upperBound;
+        brackets[i] = (this.taxRates[i].upperBound - this.taxRates[i - 1].upperBound) * this.taxRates[i].rate; 
+      }
+    }
+    return brackets;
+  }
+
 }
