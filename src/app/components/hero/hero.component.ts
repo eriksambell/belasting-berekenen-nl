@@ -61,7 +61,7 @@ export class HeroComponent {
 export class CalculateTax {
   brackets: number[] = [];
   taxRates: {
-    box: number,
+    bracket: number,
     lowerBound: number,
     upperBound: number,
     rate: number
@@ -76,11 +76,11 @@ export class CalculateTax {
     if (!income || income === 0) return [0];
     if (income <= this.taxRates[0].upperBound) return [income];
 
-    const box: number = this.taxRates.find(bracket => income >= bracket.lowerBound && income <= bracket.upperBound).box;
+    const nrOfBrackets: number = this.taxRates.find(bracket => income >= bracket.lowerBound && income <= bracket.upperBound).bracket;
     const brackets = [this.taxRates[0].upperBound * this.taxRates[0].rate];
     let remainingIncome = income - this.taxRates[0].upperBound;
-    for (let i = 1; i < box; i++) {
-      if (i === box - 1) {
+    for (let i = 1; i < nrOfBrackets; i++) {
+      if (i === nrOfBrackets - 1) {
         brackets[i] = remainingIncome * this.taxRates[i].rate
       } else {
         remainingIncome = income - this.taxRates[i].upperBound;

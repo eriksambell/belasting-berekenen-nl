@@ -44,17 +44,17 @@ describe('HeroComponent', () => {
         const age = 50;
         const income = 100000;
         const calcTax = new CalculateTax(income, age);
-        const resultBox1 = NORMAL_TAX_RATES[0].upperBound * NORMAL_TAX_RATES[0].rate;
-        const resultBox2 = (income - NORMAL_TAX_RATES[0].upperBound) * NORMAL_TAX_RATES[1].rate;
-        expect(calcTax.brackets).toEqual([resultBox1, resultBox2]); 
+        const bracket1 = NORMAL_TAX_RATES[0].upperBound * NORMAL_TAX_RATES[0].rate;
+        const bracket2 = (income - NORMAL_TAX_RATES[0].upperBound) * NORMAL_TAX_RATES[1].rate;
+        expect(calcTax.brackets).toEqual([bracket1, bracket2]); 
     })
 
     it ('should correctly return the amount of income for each tax bracket for working people', () => {
         const age = 80;
         const income = 100000;
         const calcTax = new CalculateTax(income, age);
-        const box1 = PENSION_TAX_RATES[0].upperBound * PENSION_TAX_RATES[0].rate;
-        const box2 = (PENSION_TAX_RATES[1].upperBound - PENSION_TAX_RATES[0].upperBound) * PENSION_TAX_RATES[1].rate;
-        const box3 = (income - PENSION_TAX_RATES[1].upperBound) * PENSION_TAX_RATES[2].rate;
-        expect(calcTax.brackets).toEqual([box1, box2, box3]); 
+        const bracket1 = PENSION_TAX_RATES[0].upperBound * PENSION_TAX_RATES[0].rate;
+        const bracket2 = (PENSION_TAX_RATES[1].upperBound - PENSION_TAX_RATES[0].upperBound) * PENSION_TAX_RATES[1].rate;
+        const bracket3 = (income - PENSION_TAX_RATES[1].upperBound) * PENSION_TAX_RATES[2].rate;
+        expect(calcTax.brackets).toEqual([bracket1, bracket2, bracket3]); 
     })});
