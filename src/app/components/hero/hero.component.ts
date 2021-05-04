@@ -54,3 +54,11 @@ export class HeroComponent {
   }
 
 }
+
+class CalculateTax {
+  schijven: number[] = [];
+
+  constructor(age: number, income: number) {
+    
+  }
+}
