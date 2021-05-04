@@ -34,26 +34,8 @@ export class HeroComponent {
 
   // tax functions
   totalTax(income: number, age: number) {
-    let schijven = this.tarieven.vanaf.map(x => 0);
-    let tarief = this.tarieven.werkend;
-    if (age >= this.pensioenleeftijd) tarief = this.tarieven.pensioen;
-
-    for (let i = 0; i < this.tarieven.vanaf.length - 1; i++) {
-      if (income >= this.tarieven.vanaf[i] && income < this.tarieven.vanaf[i + 1]) {
-        schijven[i] = tarief[i] * (income - this.tarieven.vanaf[i]) / 12;
-        return schijven;
-      } else {
-        schijven[i] = tarief[i] * (this.tarieven.vanaf[i + 1] - this.tarieven.vanaf[i]) / 12;
-      }
-    }
-
-    // laatste schijf
-    const last = this.tarieven.vanaf.length - 1;
-    schijven[last] = tarief[last] * (income - this.tarieven.vanaf[last]) / 12;
-
-    console.log(schijven);
-
-    return schijven;
+    const tax = new CalculateTax(income, age);
+    return tax.brackets;
   }
 
 }
@@ -74,19 +56,15 @@ export class CalculateTax {
 
   private calcBrackets(income: number): number[] {
     if (!income || income === 0) return [0];
-    if (income <= this.taxRates[0].upperBound) return [income];
 
-    const nrOfBrackets: number = this.taxRates.find(bracket => income >= bracket.lowerBound && income <= bracket.upperBound).bracket;
-    const brackets = [this.taxRates[0].upperBound * this.taxRates[0].rate];
-    let remainingIncome = income - this.taxRates[0].upperBound;
-    for (let i = 1; i < nrOfBrackets; i++) {
-      if (i === nrOfBrackets - 1) {
-        brackets[i] = remainingIncome * this.taxRates[i].rate
-      } else {
-        remainingIncome = income - this.taxRates[i].upperBound;
-        brackets[i] = (this.taxRates[i].upperBound - this.taxRates[i - 1].upperBound) * this.taxRates[i].rate; 
+    let brackets = [];
+    this.taxRates.forEach((bracket, index: number) => {
+      if (income > bracket.lowerBound) {
+        const amountInBracket = Math.min(income, bracket.upperBound) - bracket.lowerBound;
+        brackets.push(amountInBracket * bracket.rate);
       }
-    }
+    })
+
     return brackets;
   }
 

@@ -6,7 +6,7 @@ export const NORMAL_TAX_RATES = [
         rate: 0.3710
     }, {
         bracket: 2,
-        lowerBound: 68508,
+        lowerBound: 68507,
         upperBound: Infinity,
         rate: 0.4950
     }
@@ -20,12 +20,12 @@ export const PENSION_TAX_RATES = [
         rate: 0.1920
     }, {
         bracket: 2,
-        lowerBound: 35130,
+        lowerBound: 35129,
         upperBound: 68507,
         rate: 0.3710
     }, {
         bracket: 3,
-        lowerBound: 68508,
+        lowerBound: 68507,
         upperBound: Infinity,
         rate: 0.4950
     }

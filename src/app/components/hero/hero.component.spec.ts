@@ -25,17 +25,17 @@ describe('HeroComponent', () => {
         expect(calcTax.brackets[0]).toEqual(0);
     })
 
-    it('should result in one tax bracket with total income if income is in first tax bracket', () => {
+    it('should result in one tax bracket if income is in first tax bracket', () => {
         const age = 50;
         const income = 1;
         const calcTax = new CalculateTax(income, age);
         expect(calcTax.brackets.length).toEqual(1);
-        expect(calcTax.brackets[0]).toEqual(income);
+        expect(calcTax.brackets[0]).toEqual(income * NORMAL_TAX_RATES[0].rate);
     })
 
     it ('should result in two tax brackets if income is in second bracket', () => {
         const age = 50;
-        const income = NORMAL_TAX_RATES[1].lowerBound;
+        const income = NORMAL_TAX_RATES[1].lowerBound + 1;
         const calcTax = new CalculateTax(income, age);
         expect(calcTax.brackets.length).toEqual(2);
     })
@@ -49,7 +49,7 @@ describe('HeroComponent', () => {
         expect(calcTax.brackets).toEqual([bracket1, bracket2]); 
     })
 
-    it ('should correctly return the amount of income for each tax bracket for working people', () => {
+    it ('should correctly return the amount of income for each tax bracket for old people', () => {
         const age = 80;
         const income = 100000;
         const calcTax = new CalculateTax(income, age);
