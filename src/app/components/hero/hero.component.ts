@@ -23,21 +23,10 @@ export class HeroComponent {
     this.dataEvent.emit(schijvenTotal);
   }
 
-  // tax input
-  tarieven = {
-    vanaf: [0, 20834, 34817, 65507],
-    werkend: [0.3665, 0.3810, 0.3810, 0.5175],
-    pensioen: [0.1875, 0.2020, 0.3810, 0.5175]
-  }
-  pensioenleeftijd = 67;
-  mNota = [];
-
-  // tax functions
   totalTax(income: number, age: number) {
     const tax = new CalculateTax(income, age);
     return tax.brackets;
   }
-
 }
 
 export class CalculateTax {
@@ -59,13 +48,13 @@ export class CalculateTax {
 
     let brackets = [];
     this.taxRates.forEach((bracket, index: number) => {
-      if (income > bracket.lowerBound) {
-        const amountInBracket = Math.min(income, bracket.upperBound) - bracket.lowerBound;
+      if (income >= bracket.lowerBound) {
+        const previousUpperBound = index === 0 ? 0 : this.taxRates[index - 1].upperBound;
+        const amountInBracket = Math.min(income, bracket.upperBound) - previousUpperBound;
         brackets.push(amountInBracket * bracket.rate);
       }
     })
 
     return brackets;
   }
-
 }
