@@ -14,18 +14,12 @@ export class HeroComponent {
   ageInput = new HeroForm(null, "Leeftijd", "age", "Uw leeftijd", false, 2);
   inputs = [this.incomeInput, this.ageInput];
 
-  // send input to results component
+  @Output() dataEvent = new EventEmitter<number>();
 
-  @Output() dataEvent = new EventEmitter<any>();
-  sendData() {
-    let inputData = this.totalTax(this.incomeInput.value * 12, this.ageInput.value);
-    let schijvenTotal = inputData.reduce((total, num) => total + num);
-    this.dataEvent.emit(schijvenTotal);
-  }
-
-  totalTax(income: number, age: number) {
-    const tax = new CalculateTax(income, age);
-    return tax.brackets;
+  public submit(): void {
+    const tax = new CalculateTax(this.incomeInput.value, this.ageInput.value);
+    const total = tax.brackets.reduce((sum, current) => sum + current);
+    this.dataEvent.emit(total);
   }
 }
 
