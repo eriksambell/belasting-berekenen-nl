@@ -1,39 +1,39 @@
 <section class="hero">
   <div class="hero-container">
     <h2>Bereken nu!</h2>
-    <form #heroInput="ngForm" (ngSubmit)="submit()">
-      <div class="form-field" *ngFor="let input of inputs">
-        <label for="{{ input.id }}">{{ input.label }}:</label>
+    <form #form="ngForm" (ngSubmit)="submit()">
+      <div class="form-field" *ngFor="let field of fields">
+        <label for="{{ field.id }}">{{ field.label }}:</label>
         <input
-          id="{{ input.id }}"
-          maxlength="{{ input.maxLength }}"
+          id="{{ field.id }}"
+          maxlength="{{ field.maxLength }}"
           type="text"
           pattern="[0-9]*"
           required
-          [(ngModel)]="input.value"
-          name="{{ input.id }}"
+          [(ngModel)]="field.value"
+          name="{{ field.id }}"
         />
         <span
           class="popup-symbol"
-          (mouseenter)="input.showTooltip = true"
-          (mouseleave)="input.showTooltip = false"
+          (mouseenter)="field.showTooltip = true"
+          (mouseleave)="field.showTooltip = false"
         >
         </span>
         <p
-          class="alert alert-{{ input.id }}"
+          class="alert alert-{{ field.id }}"
           role="alert"
           [ngClass]="{
-            'alert--show': input.showTooltip,
-            'alert--hide': !input.showTooltip
+            'alert--show': field.showTooltip,
+            'alert--hide': !field.showTooltip
           }"
         >
-          {{ input.tooltip }}
+          {{ field.tooltip }}
         </p>
       </div>
       <button
         type="submit"
         class="btn btn-primary"
-        [disabled]="!heroInput.form.valid"
+        [disabled]="!form.form.valid"
       >
         Bereken
       </button>
