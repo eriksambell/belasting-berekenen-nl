@@ -3,31 +3,31 @@
     <h2>Bereken nu!</h2>
     <form #heroInput="ngForm" (ngSubmit)="submit()">
       <div class="form-field" *ngFor="let input of inputs">
-        <label for="{{ input.code }}">{{ input.text }}:</label>
+        <label for="{{ input.id }}">{{ input.label }}:</label>
         <input
-          id="{{ input.code }}"
-          maxlength="{{ input.maxlength }}"
+          id="{{ input.id }}"
+          maxlength="{{ input.maxLength }}"
           type="text"
           pattern="[0-9]*"
           required
           [(ngModel)]="input.value"
-          name="{{ input.code }}"
+          name="{{ input.id }}"
         />
         <span
           class="popup-symbol"
-          (mouseenter)="input.popup = true"
-          (mouseleave)="input.popup = false"
+          (mouseenter)="input.showTooltip = true"
+          (mouseleave)="input.showTooltip = false"
         >
         </span>
         <p
-          class="alert alert-{{ input.code }}"
+          class="alert alert-{{ input.id }}"
           role="alert"
           [ngClass]="{
-            'alert--show': input.popup,
-            'alert--hide': !input.popup
+            'alert--show': input.showTooltip,
+            'alert--hide': !input.showTooltip
           }"
         >
-          {{ input.alert }}
+          {{ input.tooltip }}
         </p>
       </div>
       <button
