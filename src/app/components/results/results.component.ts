@@ -78,6 +78,17 @@ export class ResultsComponent implements OnInit, OnChanges {
     return 0;
   }
 
+  /**
+   * Calculates size of box, based on budget
+   * @param budget {number} budget amount
+   * @returns {number} relative box width and height
+   */
+  public getBoxSize(budget: number): number {
+    const biggest: number = Math.sqrt(this.budget[0].amount);
+    const current: number = Math.sqrt(budget);
+    return (current / biggest) * this.widthFirstBox * 100;
+  }
+
   private getTotalTax(): number {
     const tax = new CalculateTax(this.data);
     return tax.brackets.reduce((sum: number, current: number) => sum + current);
@@ -119,16 +130,5 @@ export class ResultsComponent implements OnInit, OnChanges {
       // sort levels array on height to enable searching lowest level
       this.levels.sort((a, b) => (a.height > b.height ? 1 : -1));
     });
-  }
-
-  /**
-   * Calculates size of box, based on budget
-   * @param budget {number} budget amount
-   * @returns {number} relative box width and height
-   */
-  private getBoxSize(budget: number): number {
-    const biggest: number = Math.sqrt(this.budget[0].amount);
-    const current: number = Math.sqrt(budget);
-    return (current / biggest) * this.widthFirstBox * 100;
   }
 }
