@@ -67,11 +67,10 @@ export class ResultsComponent implements OnChanges {
     } else if (boxCentre + 0.5 * hoverWidth > container.clientWidth) {
       // hover goes off screen on right side -> negative correction
       return (
-        -1 *
-        (boxCentre +
-          0.5 * hoverWidth -
-          container.clientWidth +
-          parseInt(container.style.paddingRight))
+        -boxCentre -
+        0.5 * hoverWidth +
+        container.clientWidth -
+        parseInt(container.style.paddingRight)
       );
     }
 
@@ -92,10 +91,10 @@ export class ResultsComponent implements OnChanges {
   private setPositions(): void {
     this.budget.forEach((budget: BudgetLine) => {
       // get width/height for box
-      const boxSize = this.getBoxSize(budget.amount);
+      const boxSize: number = this.getBoxSize(budget.amount);
 
       // find level where box fits
-      const usedLevel = this.levels.find((level: Level) => level.width > boxSize);
+      const usedLevel: Level = this.levels.find((level: Level) => level.width > boxSize);
 
       // set positions for box
       this.positions.push({
@@ -126,8 +125,8 @@ export class ResultsComponent implements OnChanges {
    * @returns {number} box width and height in pixels
    */
   private getBoxSize(budget: number): number {
-    const biggestBudget = Math.sqrt(this.budget[0].amount);
-    const currentBudget = Math.sqrt(budget);
+    const biggestBudget: number = Math.sqrt(this.budget[0].amount);
+    const currentBudget: number = Math.sqrt(budget);
     return (currentBudget / biggestBudget) * this.widthFirstBox * 100;
   }
 }
