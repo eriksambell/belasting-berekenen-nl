@@ -131,9 +131,4 @@ export class ResultsComponent implements OnInit, OnChanges {
     const current: number = Math.sqrt(budget);
     return (current / biggest) * this.widthFirstBox * 100;
   }
-
-  private reset(): void {
-    this.positions = [];
-    this.levels = [];
-  }
 }
