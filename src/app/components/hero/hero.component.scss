@@ -60,26 +60,23 @@
   &__label,
   &__input {
     margin: 8px 0;
+    display: inline-block;
+    line-height: 1.8;
   }
 
   &__label {
-    display: inline-block;
     width: 65px;
-    line-height: 1.8;
   }
 
   &__input {
     z-index: 20;
-    display: inline-block;
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
     font-size: 15px;
     border-width: 0;
     border-bottom-width: 1px;
     border-bottom-color: rgba(0, 0, 0, 0.5);
-    line-height: 1.8;
     background-color: rgba(255, 255, 255, 0);
-    position: relative;
 
     &#income {
       width: 100px;
@@ -96,11 +93,17 @@
 
   &__alert-symbol {
     cursor: pointer;
-    position: relative;
     transition: all 200ms ease;
-    top: 2px;
-    left: 6px;
     color: rgba(68, 50, 102, 0.8);
+    vertical-align: middle;
+
+    &-container {
+      position: relative;
+      display: inline-block;
+      width: 15px;
+      top: 2px;
+      left: 6px;
+    }
 
     &::after {
       font-family: "Font Awesome 5 Free";
@@ -159,6 +162,11 @@
   .form-field {
     &:first-of-type {
       margin-right: 40px;
+    }
+
+    &__label {
+      width: auto;
+      margin-right: 8px;
     }
 
     &__alert-text {

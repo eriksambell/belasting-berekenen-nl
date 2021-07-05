@@ -17,15 +17,18 @@
           [name]="field.id"
           [(ngModel)]="field.value"
         />
-        <span
-          class="form-field__alert-symbol"
-          [ngClass]="{
-            'form-field__alert-symbol--invalid': input.dirty && input.invalid
-          }"
-          (mouseenter)="field.showTooltip = true"
-          (mouseleave)="field.showTooltip = false"
-        >
-        </span>
+        <div class="form-field__alert-symbol-container">
+          <span
+            class="form-field__alert-symbol"
+            [ngClass]="{
+              'form-field__alert-symbol--invalid':
+                input.dirty && input.value && input.invalid
+            }"
+            (mouseenter)="field.showTooltip = true"
+            (mouseleave)="field.showTooltip = false"
+          >
+          </span>
+        </div>
         <p
           class="form-field__alert-text"
           role="alert"
