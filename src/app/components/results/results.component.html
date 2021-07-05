@@ -1,9 +1,9 @@
 <section #results *ngIf="data && totalTax" class="results" (window:resize)="onResize($event)">
   <div class="results-container">
     <p class="results__hover">
-      <span>U betaalt maandelijks</span>
+      U betaalt maandelijks
       <span class="results__hover-number">&euro; {{ totalTax | number: "1.0-0" }}</span>
-      <span>inkomensbelasting</span>
+      inkomensbelasting
     </p>
     <div
       #graph

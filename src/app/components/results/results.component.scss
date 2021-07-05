@@ -15,11 +15,8 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: 20px 0;
-
-    span {
-      font-family: "Dosis", sans-serif;
-      font-size: 125%;
-    }
+    font-family: "Dosis", sans-serif;
+    font-size: 110%;
 
     &-number {
       font-weight: 700;
@@ -107,5 +104,11 @@
         font-weight: 500;
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .results__hover {
+    font-size: 125%;
   }
 }
