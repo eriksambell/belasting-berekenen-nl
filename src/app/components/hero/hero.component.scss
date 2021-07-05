@@ -98,24 +98,22 @@ form {
 }
 
 .alert {
-  position: absolute;
+  display: inline-block;
   background-color: rgba(68, 50, 102, 0.8);
   color: #fff;
-  padding: 5px 12px;
+  padding: 4px 6px;
   text-align: center;
   transition: opacity 250ms ease;
+  margin-left: 20px;
   margin-bottom: 0;
+  font-size: 12px;
 
   &--show {
     opacity: 1;
-    height: 35.3px;
   }
 
   &--hide {
     opacity: 0;
-    height: 0;
-    padding: 0;
-    border: 0;
   }
 }
 
@@ -156,7 +154,7 @@ form {
 
 @media screen and (min-width: 768px) {
   .hero {
-    padding: 15px 0 25px 0;
+    padding: 15px 0;
   }
 
   form {
@@ -169,10 +167,16 @@ form {
     }
 
     .btn {
-      margin-top: 10px;
       position: absolute;
       right: 0;
-      top: -13px;
     }
+  }
+
+  .alert {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 4px;
+    margin-left: 0;
   }
 }
