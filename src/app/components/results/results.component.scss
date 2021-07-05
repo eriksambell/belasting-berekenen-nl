@@ -49,6 +49,15 @@
     transition: all 500ms ease;
     background-image: radial-gradient(circle at top left, rgba(68, 50, 102, 0.2) 10%, #c3c3e5);
 
+    p {
+      display: inline-block;
+      font-family: "Dosis", sans-serif;
+      position: absolute;
+      bottom: 4%;
+      right: 5%;
+      line-height: 1;
+    }
+
     &:hover {
       background-color: #443266;
       background-image: radial-gradient(
@@ -61,15 +70,6 @@
       p {
         color: #fff;
       }
-    }
-
-    p {
-      display: inline-block;
-      font-family: "Dosis", sans-serif;
-      position: absolute;
-      bottom: 4%;
-      right: 5%;
-      line-height: 1;
     }
   }
 

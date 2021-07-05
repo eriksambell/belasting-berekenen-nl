@@ -36,7 +36,8 @@ export class ResultsComponent implements OnChanges {
     },
   ];
 
-  widthFirstBox = 41 / 100;
+  widthFirstBox = 41 / 100; // relative width
+  loadingDelay = 200; // in milliseconds
 
   ngOnChanges(): void {
     console.log(this.data);
@@ -119,9 +120,9 @@ export class ResultsComponent implements OnChanges {
   }
 
   /**
-   * Calculates size of box
+   * Calculates size of box, based on budget
    * @param budget {number} budget amount
-   * @returns {number} box width and height in pixels
+   * @returns {number} relative box width and height
    */
   private getBoxSize(budget: number): number {
     const biggest: number = Math.sqrt(this.budget[0].amount);
