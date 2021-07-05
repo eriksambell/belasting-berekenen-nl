@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { CalculateTax } from "src/app/shared/calculateTax";
 
 interface FormInput {
@@ -8,7 +8,6 @@ interface FormInput {
   maxLength: number;
   value?: number;
   showTooltip?: boolean;
-  error?: boolean;
 }
 
 @Component({
@@ -16,7 +15,7 @@ interface FormInput {
   templateUrl: "./hero.component.html",
   styleUrls: ["./hero.component.scss"],
 })
-export class HeroComponent implements OnInit {
+export class HeroComponent {
   @Output()
   totalTax = new EventEmitter<number>();
 
@@ -34,8 +33,6 @@ export class HeroComponent implements OnInit {
       maxLength: 3,
     },
   ];
-
-  ngOnInit(): void {}
 
   public submit(): void {
     const tax = new CalculateTax(this.fields[0].value, this.fields[1].value);
