@@ -3,15 +3,16 @@
     <h2>Bereken nu!</h2>
     <form #form="ngForm" (ngSubmit)="submit()">
       <div class="form-field" *ngFor="let field of fields">
-        <label for="{{ field.id }}">{{ field.label }}:</label>
+        <label [attr.for]="field.id">{{ field.label }}:</label>
         <input
-          id="{{ field.id }}"
-          maxlength="{{ field.maxLength }}"
           type="text"
           pattern="[0-9]*"
           required
+          [class]="field.id"
+          [id]="field.id"
+          [attr.maxlength]="field.maxLength"
+          [name]="field.id"
           [(ngModel)]="field.value"
-          name="{{ field.id }}"
         />
         <span
           class="popup-symbol"
