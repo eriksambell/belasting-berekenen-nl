@@ -1,36 +1,42 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { CalculateTax } from 'src/app/shared/calculateTax';
-import { HeroForm } from '../../shared/hero-form';
+import { Component, Output, EventEmitter } from "@angular/core";
+import { CalculateTax } from "src/app/shared/calculateTax";
+
+interface FormInput {
+  id: string;
+  label: string;
+  tooltip: string;
+  maxLength: number;
+  value?: number;
+  showTooltip?: boolean;
+}
 
 @Component({
-  selector: 'app-hero',
-  templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.css']
+  selector: "app-hero",
+  templateUrl: "./hero.component.html",
+  styleUrls: ["./hero.component.scss"],
 })
-
-export class HeroComponent implements OnInit {
-
-  @Output() 
+export class HeroComponent {
+  @Output()
   totalTax = new EventEmitter<number>();
 
-  inputs: HeroForm[];
-  incomeInput: HeroForm;
-  ageInput: HeroForm;
-
-  ngOnInit(): void {
-    this.setInputs();
-  }
+  fields: FormInput[] = [
+    {
+      id: "income",
+      label: "Salaris",
+      tooltip: "Vul uw bruto maandsalaris in",
+      maxLength: 5,
+    },
+    {
+      id: "age",
+      label: "Leeftijd",
+      tooltip: "Vul uw leeftijd in",
+      maxLength: 3,
+    },
+  ];
 
   public submit(): void {
-    const tax = new CalculateTax(this.inputs[0].value, this.inputs[1].value);
+    const tax = new CalculateTax(this.fields[0].value, this.fields[1].value);
     const total = tax.brackets.reduce((sum, current) => sum + current);
     this.totalTax.emit(total);
   }
-
-  private setInputs(): void {
-    this.incomeInput = new HeroForm(null, "Salaris", "income", "Uw bruto maandsalaris", false, 5);
-    this.ageInput = new HeroForm(null, "Leeftijd", "age", "Uw leeftijd", false, 2);
-    this.inputs = [this.incomeInput, this.ageInput];
-  }
 }
-

@@ -1,39 +1,49 @@
 <section class="hero">
   <div class="hero-container">
-    <h2>Bereken nu!</h2>
-    <form #heroInput="ngForm" (ngSubmit)="submit()">
-      <div class="form-field" *ngFor="let input of inputs">
-        <label for="{{ input.code }}">{{ input.text }}:</label>
+    <h2 class="hero__title">Bereken nu!</h2>
+    <form class="hero__form" #form="ngForm" (ngSubmit)="submit()" novalidate>
+      <div class="form-field" *ngFor="let field of fields">
+        <label class="form-field__label" [attr.for]="field.id"
+          >{{ field.label }}:</label
+        >
         <input
-          id="{{ input.code }}"
-          maxlength="{{ input.maxlength }}"
+          #input="ngModel"
           type="text"
           pattern="[0-9]*"
           required
-          [(ngModel)]="input.value"
-          name="{{ input.code }}"
+          class="form-field__input"
+          [id]="field.id"
+          [attr.maxlength]="field.maxLength"
+          [name]="field.id"
+          [(ngModel)]="field.value"
         />
-        <span
-          class="popup-symbol"
-          (mouseenter)="input.popup = true"
-          (mouseleave)="input.popup = false"
-        >
-        </span>
+        <div class="form-field__alert-symbol-container">
+          <span
+            class="form-field__alert-symbol"
+            [ngClass]="{
+              'form-field__alert-symbol--invalid':
+                input.dirty && input.value && input.invalid
+            }"
+            (mouseenter)="field.showTooltip = true"
+            (mouseleave)="field.showTooltip = false"
+          >
+          </span>
+        </div>
         <p
-          class="alert alert-{{ input.code }}"
+          class="form-field__alert-text"
           role="alert"
           [ngClass]="{
-            'alert--show': input.popup,
-            'alert--hide': !input.popup
+            'form-field__alert-text--show': field.showTooltip,
+            'form-field__alert-text--hide': !field.showTooltip
           }"
         >
-          {{ input.alert }}
+          {{ field.tooltip }}
         </p>
       </div>
       <button
         type="submit"
-        class="btn btn-primary"
-        [disabled]="!heroInput.form.valid"
+        class="hero__form-btn btn btn-primary"
+        [disabled]="!form.form.valid"
       >
         Bereken
       </button>
