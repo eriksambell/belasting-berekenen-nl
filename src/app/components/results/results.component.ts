@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { CalculateTax, UserInput } from "src/app/shared/calculateTax";
 import { BUDGET, BudgetLine } from "../../shared/budget.constant";
 
@@ -19,7 +19,7 @@ interface Level {
   templateUrl: "./results.component.html",
   styleUrls: ["./results.component.scss"],
 })
-export class ResultsComponent implements OnChanges {
+export class ResultsComponent implements OnInit, OnChanges {
   @Input() data: UserInput;
 
   budget: BudgetLine[] = BUDGET;
@@ -39,12 +39,14 @@ export class ResultsComponent implements OnChanges {
   widthFirstBox = 41 / 100; // relative width
   loadingDelay = 200; // in milliseconds
 
+  ngOnInit(): void {
+    this.setPositions();
+  }
+
   ngOnChanges(): void {
-    console.log(this.data);
     if (this.data) {
       this.totalTax = this.getTotalTax();
       this.totalBudget = this.getTotalBudget();
-      this.setPositions();
     }
   }
 
@@ -128,5 +130,10 @@ export class ResultsComponent implements OnChanges {
     const biggest: number = Math.sqrt(this.budget[0].amount);
     const current: number = Math.sqrt(budget);
     return (current / biggest) * this.widthFirstBox * 100;
+  }
+
+  private reset(): void {
+    this.positions = [];
+    this.levels = [];
   }
 }
