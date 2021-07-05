@@ -17,7 +17,7 @@ interface Level {
 @Component({
   selector: "app-results",
   templateUrl: "./results.component.html",
-  styleUrls: ["./results.component.css"],
+  styleUrls: ["./results.component.scss"],
 })
 export class ResultsComponent implements OnChanges {
   @Input() data: UserInput;
@@ -60,18 +60,14 @@ export class ResultsComponent implements OnChanges {
   public correctHover(box: HTMLElement, container: HTMLElement): number {
     const hoverWidth = 200;
     const boxCentre: number = box.getBoundingClientRect().left + 0.5 * box.clientWidth;
+    const containerPaddingRight = 15;
 
     if (boxCentre < 0.5 * hoverWidth) {
       // hover goes off screen on left side -> positive correction
       return 0.5 * hoverWidth - 0.5 * box.clientWidth;
     } else if (boxCentre + 0.5 * hoverWidth > container.clientWidth) {
       // hover goes off screen on right side -> negative correction
-      return (
-        -boxCentre -
-        0.5 * hoverWidth +
-        container.clientWidth -
-        parseInt(container.style.paddingRight)
-      );
+      return -boxCentre - 0.5 * hoverWidth + container.clientWidth - containerPaddingRight;
     }
 
     // no correction necessary
@@ -125,8 +121,8 @@ export class ResultsComponent implements OnChanges {
    * @returns {number} box width and height in pixels
    */
   private getBoxSize(budget: number): number {
-    const biggestBudget: number = Math.sqrt(this.budget[0].amount);
-    const currentBudget: number = Math.sqrt(budget);
-    return (currentBudget / biggestBudget) * this.widthFirstBox * 100;
+    const biggest: number = Math.sqrt(this.budget[0].amount);
+    const current: number = Math.sqrt(budget);
+    return (current / biggest) * this.widthFirstBox * 100;
   }
 }

@@ -1,0 +1,111 @@
+.results {
+  background-color: #f8f7ff;
+  transition: all 1000ms ease;
+  padding: 0 15px 100px;
+  overflow: hidden;
+
+  &-container {
+    max-width: 666px;
+    width: 100%;
+  }
+
+  &__hover {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+
+    span {
+      font-family: "Dosis", sans-serif;
+      font-size: 125%;
+    }
+
+    &-number {
+      font-weight: 700;
+      color: #443266;
+      margin: 0 8px;
+    }
+  }
+
+  &__graph {
+    width: 100%;
+    height: 0;
+    transition: height 500ms ease;
+  }
+}
+
+.box {
+  position: absolute;
+  bottom: 600px;
+  left: 0;
+  transition: all 500ms ease;
+  cursor: pointer;
+
+  &__number {
+    position: relative;
+    width: 100%;
+    border: solid 1px #f8f7ff;
+    cursor: default;
+    background-color: #c3c3e5;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+    background-image: radial-gradient(circle at top left, rgba(68, 50, 102, 0.2) 10%, #c3c3e5);
+
+    &:hover {
+      background-color: #443266;
+      background-image: radial-gradient(
+        circle at bottom right,
+        rgba(195, 195, 229, 0.3) 10%,
+        #443266
+      );
+      transition: all 500ms ease;
+
+      p {
+        color: #fff;
+      }
+    }
+
+    p {
+      display: inline-block;
+      font-family: "Dosis", sans-serif;
+      position: absolute;
+      bottom: 4%;
+      right: 5%;
+      line-height: 1;
+    }
+  }
+
+  &__info {
+    position: absolute;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 8px 10px;
+    z-index: 100;
+    pointer-events: none;
+    top: calc(100% + 5px);
+    transform: translate(-50%, 0);
+
+    > span {
+      font-size: 0;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid rgba(0, 0, 0, 0.75);
+      top: -8px;
+      position: absolute;
+    }
+
+    p {
+      font-size: 13px;
+      color: #fff;
+      line-height: 1.4;
+
+      span {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+}

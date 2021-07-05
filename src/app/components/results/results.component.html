@@ -1,19 +1,13 @@
-<section
-  #results
-  *ngIf="data && totalTax"
-  id="results"
-  (window:resize)="onResize($event)"
-  [style.padding-right.px]="15"
->
+<section #results *ngIf="data && totalTax" class="results" (window:resize)="onResize($event)">
   <div class="results-container">
-    <div class="results-total">
-      <p class="results-total-text">U betaalt maandelijks</p>
-      <p class="results-total-number">&euro; {{ totalTax | number: "1.0-0" }}</p>
-      <p class="results-total-text">inkomensbelasting</p>
-    </div>
+    <p class="results__hover">
+      <span>U betaalt maandelijks</span>
+      <span class="results__hover-number">&euro; {{ totalTax | number: "1.0-0" }}</span>
+      <span>inkomensbelasting</span>
+    </p>
     <div
       #graph
-      class="results-graph"
+      class="results__graph"
       [style.height.px]="(levels[levels.length - 1].height / 100) * graph.offsetWidth"
     >
       <div
@@ -27,7 +21,7 @@
         [style.transition-delay.ms]="i * 200"
       >
         <div
-          class="box-number"
+          class="box__number"
           [style.height.px]="container.offsetWidth"
           (mouseenter)="line.showInfo = true"
           (mouseleave)="line.showInfo = false"
@@ -38,7 +32,7 @@
         </div>
         <div
           #boxInfo
-          class="box-info"
+          class="box__info"
           *ngIf="line.showInfo"
           [style.left.px]="0.5 * container.clientWidth + correctHover(container, results)"
         >
@@ -46,7 +40,7 @@
             >arrow up</span
           >
           <p>
-            U betaalt &euro;{{ (line.amount / totalBudget) * totalTax | number: "1.2-2" }}/maand
+            U betaalt &euro;{{ (line.amount / totalBudget) * totalTax | number: "1.2-2" }} per maand
             voor
             <span>{{ line.long }}</span>
           </p>
