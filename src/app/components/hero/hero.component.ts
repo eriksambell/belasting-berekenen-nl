@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
-import { CalculateTax } from "src/app/shared/calculateTax";
+import { UserInput } from "src/app/shared/calculateTax";
 
 interface FormInput {
   id: string;
@@ -17,7 +17,7 @@ interface FormInput {
 })
 export class HeroComponent {
   @Output()
-  totalTax = new EventEmitter<number>();
+  totalTax = new EventEmitter<UserInput>();
 
   fields: FormInput[] = [
     {
@@ -35,8 +35,9 @@ export class HeroComponent {
   ];
 
   public submit(): void {
-    const tax = new CalculateTax(this.fields[0].value, this.fields[1].value);
-    const total = tax.brackets.reduce((sum, current) => sum + current);
-    this.totalTax.emit(total);
+    this.totalTax.emit({
+      income: this.fields[0].value,
+      age: this.fields[0].value,
+    });
   }
 }
