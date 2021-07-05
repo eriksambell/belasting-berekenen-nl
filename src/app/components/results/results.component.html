@@ -8,24 +8,20 @@
   <div class="results-container">
     <div class="results-total">
       <p class="results-total-text">U betaalt maandelijks</p>
-      <p class="results-total-number">
-        &euro; {{ totalTax | number: "1.0-0" }}
-      </p>
+      <p class="results-total-number">&euro; {{ totalTax | number: "1.0-0" }}</p>
       <p class="results-total-text">inkomensbelasting</p>
     </div>
     <div
       #graph
       class="results-graph"
-      [style.height.px]="
-        (levels[levels.length - 1].height / 100) * graph.offsetWidth
-      "
+      [style.height.px]="(levels[levels.length - 1].height / 100) * graph.offsetWidth"
     >
       <div
         #container
         class="box"
         *ngFor="let line of budget; index as i"
-        [style.width.%]="setWidth(line.amount)"
-        [style.height.px]="(setWidth(line.amount) / 100) * graph.offsetWidth"
+        [style.width.%]="getBoxSize(line.amount)"
+        [style.height.px]="(getBoxSize(line.amount) / 100) * graph.offsetWidth"
         [style.left.px]="(positions[i].left / 100) * graph.offsetWidth"
         [style.bottom.px]="(positions[i].bottom / 100) * graph.offsetWidth"
         [style.transition-delay.ms]="i * 200"
@@ -37,27 +33,21 @@
           (mouseleave)="line.showInfo = false"
         >
           <p [style.font-size.px]="container.offsetWidth / 3">
-            &euro;{{ (line.amount / budgetTotal) * totalTax | number: "1.0-0" }}
+            &euro;{{ (line.amount / totalBudget) * totalTax | number: "1.0-0" }}
           </p>
         </div>
         <div
           #boxInfo
           class="box-info"
           *ngIf="line.showInfo"
-          [style.left.px]="
-            0.5 * container.clientWidth + correctHover(container, results)
-          "
+          [style.left.px]="0.5 * container.clientWidth + correctHover(container, results)"
         >
-          <span
-            [style.left.px]="
-              0.5 * boxInfo.clientWidth - 8 - correctHover(container, results)
-            "
+          <span [style.left.px]="0.5 * boxInfo.clientWidth - 8 - correctHover(container, results)"
             >arrow up</span
           >
           <p>
-            U betaalt &euro;{{
-              (line.amount / budgetTotal) * totalTax | number: "1.2-2"
-            }}/maand voor
+            U betaalt &euro;{{ (line.amount / totalBudget) * totalTax | number: "1.2-2" }}/maand
+            voor
             <span>{{ line.long }}</span>
           </p>
         </div>
