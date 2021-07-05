@@ -27,33 +27,33 @@ export class ResultsComponent implements OnChanges {
     return eventTarget.innerWidth;
   }
 
-  public correctHover(container: HTMLElement, results: HTMLElement): number {
-    let hoverWidth = 200;
-    let containerWidth = container.clientWidth;
-    let containerPos = container.getBoundingClientRect();
-    let viewportWidth = results.clientWidth;
-    let correctLeft = 1;
-    let padding = parseInt(results.style.paddingRight);
+  /**
+   * Corrects the x position of the hover if necessary
+   * @param box {HTMLElement} budget box
+   * @param container {HTMLElement} container element
+   * @returns {number} correction from left in pixels
+   */
+  public correctHover(box: HTMLElement, container: HTMLElement): number {
+    const hoverWidth = 200;
+    const boxCentre: number =
+      box.getBoundingClientRect().left + 0.5 * box.clientWidth;
 
-    if (containerPos.left + 0.5 * containerWidth < 0.5 * hoverWidth) {
-      // infoBox goes off screen on left side
-      correctLeft = 0.5 * hoverWidth - 0.5 * containerWidth;
-    } else if (
-      containerPos.left + 0.5 * containerWidth + 0.5 * hoverWidth >
-      viewportWidth
-    ) {
-      // infoBox goes off screen on right side
-      correctLeft =
+    if (boxCentre < 0.5 * hoverWidth) {
+      // hover goes off screen on left side; positive correction
+      return 0.5 * hoverWidth - 0.5 * box.clientWidth;
+    } else if (boxCentre + 0.5 * hoverWidth > container.clientWidth) {
+      // hover goes off screen on right side; negative correction
+      return (
         -1 *
-        (containerPos.left +
-          0.5 * containerWidth +
+        (boxCentre +
           0.5 * hoverWidth -
-          viewportWidth +
-          padding);
+          container.clientWidth +
+          parseInt(container.style.paddingRight))
+      );
     }
 
-    // return correction of left value
-    return correctLeft;
+    // no correction necessary
+    return 0;
   }
 
   private calcTotal() {

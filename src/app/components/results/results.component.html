@@ -1,6 +1,6 @@
 <section
   #results
-  *ngIf="totalTax"
+  *ngIf="data && totalTax"
   id="results"
   (window:resize)="onResize($event)"
   [style.padding-right.px]="15"
