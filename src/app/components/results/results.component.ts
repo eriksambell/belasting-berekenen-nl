@@ -41,7 +41,8 @@ export class ResultsComponent implements OnChanges {
   ngOnChanges(): void {
     console.log(this.data);
     if (this.data) {
-      this.calcTotals();
+      this.totalTax = this.getTotalTax();
+      this.totalBudget = this.getTotalBudget();
       this.setPositions();
     }
   }
@@ -74,13 +75,15 @@ export class ResultsComponent implements OnChanges {
     return 0;
   }
 
-  /** Calculates total tax and total budget */
-  private calcTotals(): void {
-    const tax = new CalculateTax(this.data.income, this.data.age);
-    this.totalTax = tax.brackets.reduce((sum, current) => sum + current);
+  private getTotalTax(): number {
+    const tax = new CalculateTax(this.data);
+    return tax.brackets.reduce((sum: number, current: number) => sum + current);
+  }
 
-    const amounts: number[] = this.budget.map((budget: BudgetLine) => budget.amount);
-    this.totalBudget = amounts.reduce((total: number, num: number) => total + num);
+  private getTotalBudget(): number {
+    return this.budget
+      .map((budget: BudgetLine) => budget.amount)
+      .reduce((sum: number, current: number) => sum + current);
   }
 
   /** Sets the levels and the position of each box */
