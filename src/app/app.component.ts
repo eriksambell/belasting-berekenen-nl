@@ -1,20 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
+import { UserInput } from "./shared/calculateTax";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
-export class AppComponent implements OnInit {
- 
-  data:number = 0;
+export class AppComponent {
+  data: UserInput | undefined;
 
-  receiveData(event){
+  receiveData(event: UserInput | undefined) {
     this.data = event;
   }
-
-  ngOnInit() {
-
-  }
-
 }

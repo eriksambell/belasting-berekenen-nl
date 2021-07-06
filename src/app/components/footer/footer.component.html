@@ -1,34 +1,38 @@
-<footer>
+<footer class="footer">
   <div class="footer-container">
-    <section class="footer-descr">
+    <section class="footer__description">
       <h2 class="logo">
         <a routerLink="/">Belasting-berekenen.nl</a>
       </h2>
-      <p>Belasting-berekenen.nl maakt inzichtelijk waar uw belastinggeld naar toe gaat. Wij gebruiken hiervoor de
-        geschatte belasting over uw inkomen, en de meest recente miljoenennota.</p>
+      <p class="subtitle">
+        Belasting-berekenen.nl maakt inzichtelijk waar uw belastinggeld naar toe gaat. Wij gebruiken
+        hiervoor de geschatte belasting over uw inkomen, en de meest recente miljoenennota.
+      </p>
     </section>
     <div class="footer-col2">
-      <section class="footer-ql">
+      <section class="footer__links">
         <h3>Quick Links</h3>
-        <div>
-          <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a (click)="onClickFooterMenuItem()" routerLink="/disclaimer">Disclaimer</a></li>
-            <li><a (click)="onClickFooterMenuItem()" routerLink="/privacy-policy">Privacy policy</a></li>
-          </ul>
-        </div>
+        <ul>
+          <li><a routerLink="/">Home</a></li>
+          <li><a (click)="onLinkClick()" routerLink="/disclaimer">Disclaimer</a></li>
+          <li>
+            <a (click)="onLinkClick()" routerLink="/privacy-policy">Privacy policy</a>
+          </li>
+        </ul>
       </section>
-      <section class="footer-contact">
+      <section class="footer__contact">
         <h3>Contact</h3>
         <div>
           <ul>
-            <li class="mail"><a href="mailto:info@belasting-berekenen.nl">info@belasting-berekenen.nl</a></li>
+            <li class="footer__contact-mail">
+              <a href="mailto:info@belasting-berekenen.nl">info@belasting-berekenen.nl</a>
+            </li>
           </ul>
         </div>
       </section>
     </div>
   </div>
-  <section class="footer-copyright">
+  <section class="footer__copyright">
     <p>{{ currentYear }} &copy; Belasting-berekenen.nl</p>
   </section>
 </footer>
