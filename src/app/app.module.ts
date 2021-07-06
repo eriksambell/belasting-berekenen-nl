@@ -12,7 +12,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeroComponent } from "./components/hero/hero.component";
 import { ResultsComponent } from "./components/results/results.component";
-import { ContentComponent } from "./components/content/content.component";
+import { HomeComponent } from "./components/home/home.component";
 import { PrivacyComponent } from "./components/privacy/privacy.component";
 import { DisclaimerComponent } from "./components/disclaimer/disclaimer.component";
 
@@ -29,7 +29,7 @@ registerLocaleData(localeDutch);
     FooterComponent,
     HeroComponent,
     ResultsComponent,
-    ContentComponent,
+    HomeComponent,
     PrivacyComponent,
     DisclaimerComponent,
   ],

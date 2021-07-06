@@ -1,0 +1,194 @@
+/*** Global Styling **********
+***** Belasting-berekenen ***/
+
+/***********************
+*****   GENERAL    *****
+***********************/
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wrapper {
+  min-width: 360px;
+  width: 100%;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px dotted #443266;
+
+  &:hover {
+    border-bottom-style: solid;
+    text-decoration: none;
+  }
+}
+
+.header-container,
+.hero-container,
+.results-container,
+.footer-container {
+  margin: 0 auto;
+  position: relative;
+}
+
+.content-container {
+  margin: 25px auto 50px;
+  position: relative;
+}
+
+.accordion p {
+  color: rgba(0, 0, 0, 0.5);
+  -webkit-text-stroke: 0.2px rgba(0, 0, 0, 0.5);
+}
+
+.btn,
+footer a,
+.errorpage-content span {
+  color: #fff;
+  -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.5);
+}
+
+p,
+#hero h2 {
+  color: #000;
+  -webkit-text-stroke: 0.2px rgba(0, 0, 0, 0.5);
+}
+
+a,
+.accordion h3::after {
+  color: #443266;
+  -webkit-text-stroke: 0.2px rgba(68, 50, 102, 0.5);
+}
+
+footer p,
+footer h3,
+footer a:hover,
+footer a::before {
+  color: #c3c3e5;
+  -webkit-text-stroke: 0.1px rgba(195, 195, 229, 0.5);
+}
+
+.lowlight {
+  color: #8c489f;
+  -webkit-text-stroke: 0.2px rgba(140, 72, 159, 0.5);
+}
+
+.logo,
+.logo a,
+header p {
+  color: #f1f0ff;
+  -webkit-text-stroke: 0.2px rgba(241, 240, 255, 0.5);
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.logo {
+  font-family: "Dosis", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 165%;
+  letter-spacing: 1px;
+  transition: all 500ms ease;
+  -webkit-user-select: none; /* Chrome + Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.logo a {
+  transition: all 500ms ease;
+}
+
+h2,
+h3 {
+  font-family: "Dosis", sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/***********************
+****     CONTENT    ****
+***********************/
+
+.content {
+  &-container {
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 150%;
+    margin: 30px 0 10px 0;
+  }
+
+  h3 {
+    font-size: 130%;
+    margin: 25px 0 8px 0;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  figure {
+    img {
+      width: 100%;
+      max-width: 500px;
+      margin: 10px 0 5px 0;
+    }
+
+    figcaption {
+      font-size: 90%;
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .content figure {
+    float: right;
+    width: 50%;
+    margin: 0 0 20px 20px;
+    position: relative;
+  }
+}
+
+/*****************
+** BIG  DEVICES **
+******************/
+
+@media screen and (min-width: 992px) {
+  .header-container,
+  .hero-container,
+  .content-container,
+  .footer-container {
+    max-width: 1000px;
+  }
+}
+
+/*********************
+** VERY BIG DEVICES **
+*********************/
+
+@media screen and (min-width: 1200px) {
+  .container,
+  .two-col {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
