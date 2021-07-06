@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { CalculateTax, UserInput } from "src/app/shared/calculateTax";
-import { BUDGET, BudgetLine } from "../../shared/budget.constant";
+import { BUDGET, BudgetItem } from "../../shared/budget.constant";
 
 interface Position {
   left: number;
@@ -22,7 +22,7 @@ interface Level {
 export class ResultsComponent implements OnInit, OnChanges {
   @Input() data: UserInput;
 
-  budget: BudgetLine[] = BUDGET;
+  budget: BudgetItem[] = BUDGET;
   totalBudget: number;
   totalTax: number;
 
@@ -96,13 +96,13 @@ export class ResultsComponent implements OnInit, OnChanges {
 
   private getTotalBudget(): number {
     return this.budget
-      .map((budget: BudgetLine) => budget.amount)
+      .map((budget: BudgetItem) => budget.amount)
       .reduce((sum: number, current: number) => sum + current);
   }
 
   /** Sets the levels and the position of each box */
   private setPositions(): void {
-    this.budget.forEach((budget: BudgetLine) => {
+    this.budget.forEach((budget: BudgetItem) => {
       // get width/height for box
       const boxSize: number = this.getBoxSize(budget.amount);
 

@@ -1,12 +1,20 @@
-export interface BudgetLine {
+export interface BudgetItem {
   long: string;
   short: string;
   amount: number;
 }
 
-export const BUDGET: BudgetLine[] = [
-  { long: "Sociale Zekerheid", short: "Sociale Zekerheid", amount: 81.8 },
-  { long: "Zorg", short: "Zorg", amount: 79.7 },
+export const BUDGET: BudgetItem[] = [
+  {
+    long: "Sociale Zekerheid",
+    short: "Sociale Zekerheid",
+    amount: 81.8,
+  },
+  {
+    long: "Zorg",
+    short: "Zorg",
+    amount: 79.7,
+  },
   {
     long: "Onderwijs, Cultuur en Wetenschap",
     short: "Onderwijs & Cultuur",
@@ -27,13 +35,21 @@ export const BUDGET: BudgetLine[] = [
     short: "Justitie & Veiligheid",
     amount: 11.1,
   },
-  { long: "Defensie", short: "Defensie", amount: 10.0 },
+  {
+    long: "Defensie",
+    short: "Defensie",
+    amount: 10.0,
+  },
   {
     long: "Infrastructuur en Waterstaat",
     short: "Infrastructuur",
     amount: 9.5,
   },
-  { long: "Rentelasten", short: "Rentelasten", amount: 5.5 },
+  {
+    long: "Rentelasten",
+    short: "Rentelasten",
+    amount: 5.5,
+  },
   {
     long: "Buitenlandse Zaken en Koninkrijksrelaties",
     short: "Buitenlandse zaken",
@@ -44,8 +60,16 @@ export const BUDGET: BudgetLine[] = [
     short: "Economische zaken",
     amount: 4.0,
   },
-  { long: "Overig", short: "Overig", amount: 1.8 },
-  { long: "Financiën", short: "Financiën", amount: 1.7 },
+  {
+    long: "Overig",
+    short: "Overig",
+    amount: 1.8,
+  },
+  {
+    long: "Financiën",
+    short: "Financiën",
+    amount: 1.7,
+  },
   {
     long: "Landbouw, Natuur en Voedselkwaliteit",
     short: "Landbouw & natuur",
