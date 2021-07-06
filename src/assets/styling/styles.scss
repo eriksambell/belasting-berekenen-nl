@@ -20,12 +20,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wrapper {
-  min-width: 360px;
-  width: 100%;
-  position: relative;
-}
-
 a {
   text-decoration: none;
   border-bottom: 1px dotted #443266;
@@ -61,24 +55,10 @@ footer a,
   -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.5);
 }
 
-p,
-#hero h2 {
-  color: #000;
-  -webkit-text-stroke: 0.2px rgba(0, 0, 0, 0.5);
-}
-
 a,
 .accordion h3::after {
   color: #443266;
   -webkit-text-stroke: 0.2px rgba(68, 50, 102, 0.5);
-}
-
-footer p,
-footer h3,
-footer a:hover,
-footer a::before {
-  color: #c3c3e5;
-  -webkit-text-stroke: 0.1px rgba(195, 195, 229, 0.5);
 }
 
 .lowlight {
@@ -89,6 +69,8 @@ footer a::before {
 p {
   font-size: 14px;
   line-height: 1.7;
+  color: #000;
+  -webkit-text-stroke: 0.2px rgba(0, 0, 0, 0.5);
 }
 
 .logo {

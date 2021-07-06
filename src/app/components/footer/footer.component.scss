@@ -107,6 +107,14 @@
       transition: all 200ms ease;
     }
   }
+
+  h3,
+  p,
+  a:hover,
+  a::before {
+    color: #c3c3e5;
+    -webkit-text-stroke: 0.1px rgba(195, 195, 229, 0.5);
+  }
 }
 
 /* Footer copyright */
