@@ -2,10 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { BUDGET, BudgetItem } from "src/app/shared/budget.constant";
 
 @Component({
-  selector: "app-content",
-  templateUrl: "./content.component.html",
+  selector: "app-home",
+  templateUrl: "./home.component.html",
 })
-export class ContentComponent implements OnInit {
+export class HomeComponent implements OnInit {
   revenue: number;
   expenditure = 337;
   year = 2021;
