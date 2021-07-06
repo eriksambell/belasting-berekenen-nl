@@ -1,24 +1,52 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { CalculateTax, UserInput } from "src/app/shared/calculateTax";
-import { BUDGET } from "../../shared/budget.constant";
+import { BUDGET, BudgetItem } from "../../shared/budget.constant";
+
+interface Position {
+  left: number;
+  bottom: number;
+}
+
+interface Level {
+  id: number;
+  width: number;
+  height: number;
+  fromLeft: number;
+}
 
 @Component({
   selector: "app-results",
   templateUrl: "./results.component.html",
-  styleUrls: ["./results.component.css"],
+  styleUrls: ["./results.component.scss"],
 })
-export class ResultsComponent implements OnChanges {
+export class ResultsComponent implements OnInit, OnChanges {
   @Input() data: UserInput;
 
-  budget = BUDGET;
-  budgetTotal: number;
+  budget: BudgetItem[] = BUDGET;
+  totalBudget: number;
   totalTax: number;
-  positions = [];
-  levels = [];
+
+  positions: Position[] = [];
+  levels: Level[] = [
+    {
+      id: 0,
+      width: 100,
+      height: 0,
+      fromLeft: 0,
+    },
+  ];
+
+  widthFirstBox = 41 / 100; // relative width
+  loadingDelay = 200; // in milliseconds
+
+  ngOnInit(): void {
+    this.setPositions();
+  }
 
   ngOnChanges(): void {
     if (this.data) {
-      this.calcTotal();
+      this.totalTax = this.getTotalTax();
+      this.totalBudget = this.getTotalBudget();
     }
   }
 
@@ -27,90 +55,80 @@ export class ResultsComponent implements OnChanges {
     return eventTarget.innerWidth;
   }
 
-  public correctHover(container: HTMLElement, results: HTMLElement): number {
-    let hoverWidth = 200;
-    let containerWidth = container.clientWidth;
-    let containerPos = container.getBoundingClientRect();
-    let viewportWidth = results.clientWidth;
-    let correctLeft = 1;
-    let padding = parseInt(results.style.paddingRight);
+  /**
+   * Corrects the x position of the hover if necessary
+   * @param box {HTMLElement} budget box
+   * @param container {HTMLElement} container element
+   * @returns {number} correction from left in pixels
+   */
+  public correctHover(box: HTMLElement, container: HTMLElement): number {
+    const hoverWidth = 200;
+    const boxCentre: number = box.getBoundingClientRect().left + 0.5 * box.clientWidth;
+    const containerPaddingRight = 15;
 
-    if (containerPos.left + 0.5 * containerWidth < 0.5 * hoverWidth) {
-      // infoBox goes off screen on left side
-      correctLeft = 0.5 * hoverWidth - 0.5 * containerWidth;
-    } else if (
-      containerPos.left + 0.5 * containerWidth + 0.5 * hoverWidth >
-      viewportWidth
-    ) {
-      // infoBox goes off screen on right side
-      correctLeft =
-        -1 *
-        (containerPos.left +
-          0.5 * containerWidth +
-          0.5 * hoverWidth -
-          viewportWidth +
-          padding);
+    if (boxCentre < 0.5 * hoverWidth) {
+      // hover goes off screen on left side -> positive correction
+      return 0.5 * hoverWidth - 0.5 * box.clientWidth;
+    } else if (boxCentre + 0.5 * hoverWidth > container.clientWidth) {
+      // hover goes off screen on right side -> negative correction
+      return -boxCentre - 0.5 * hoverWidth + container.clientWidth - containerPaddingRight;
     }
 
-    // return correction of left value
-    return correctLeft;
+    // no correction necessary
+    return 0;
   }
 
-  private calcTotal() {
-    const tax = new CalculateTax(this.data.income, this.data.age);
-    this.totalTax = tax.brackets.reduce((sum, current) => sum + current);
-    let amounts = this.budget.map((x) => x.amount);
-    this.budgetTotal = amounts.reduce((total, num) => total + num);
-    this.setPositions();
+  /**
+   * Calculates size of box, based on budget
+   * @param budget {number} budget amount
+   * @returns {number} relative box width and height
+   */
+  public getBoxSize(budget: number): number {
+    const biggest: number = Math.sqrt(this.budget[0].amount);
+    const current: number = Math.sqrt(budget);
+    return (current / biggest) * this.widthFirstBox * 100;
   }
 
-  private setPositions() {
-    // set first level (no boxes placed yet)
-    this.levels = [
-      {
-        width: 100,
-        height: 0,
-        fromleft: 0,
-      },
-    ];
+  private getTotalTax(): number {
+    const tax = new CalculateTax(this.data);
+    return tax.brackets.reduce((sum: number, current: number) => sum + current);
+  }
 
-    for (let i = 0; i < this.budget.length; i++) {
-      let boxSize = this.setWidth(this.budget[i].amount); // set width for each box
-      let usedLevel = this.levels.findIndex(function (e) {
-        // find level where box fits
-        return e.width > boxSize;
-      });
+  private getTotalBudget(): number {
+    return this.budget
+      .map((budget: BudgetItem) => budget.amount)
+      .reduce((sum: number, current: number) => sum + current);
+  }
 
-      // set positions for box and push to array
+  /** Sets the levels and the position of each box */
+  private setPositions(): void {
+    this.budget.forEach((budget: BudgetItem) => {
+      // get width/height for box
+      const boxSize: number = this.getBoxSize(budget.amount);
+
+      // find level where box fits
+      const usedLevel: Level = this.levels.find((level: Level) => level.width > boxSize);
+
+      // set positions for box
       this.positions.push({
-        left: this.levels[usedLevel].fromleft,
-        bottom: this.levels[usedLevel].height,
+        left: usedLevel.fromLeft,
+        bottom: usedLevel.height,
       });
 
-      // push new level
-      let boxFromLeft = 0;
-      if (usedLevel + 1 !== this.levels.length)
-        boxFromLeft = this.levels[usedLevel].fromleft;
-
+      // set new level
       this.levels.push({
+        id: usedLevel.id,
         width: boxSize,
-        height: this.levels[usedLevel].height + boxSize,
-        fromleft: boxFromLeft,
+        height: usedLevel.height + boxSize,
+        fromLeft: usedLevel.id + 1 !== this.levels.length ? usedLevel.fromLeft : 0,
       });
 
       // update level on which box is placed
-      this.levels[usedLevel].width -= boxSize;
-      this.levels[usedLevel].fromleft += boxSize;
+      usedLevel.width -= boxSize;
+      usedLevel.fromLeft += boxSize;
 
       // sort levels array on height to enable searching lowest level
       this.levels.sort((a, b) => (a.height > b.height ? 1 : -1));
-    }
-  }
-
-  private setWidth(y: number): number {
-    let biggest = Math.sqrt(this.budget[0].amount / (0.25 * Math.PI));
-    let current = Math.sqrt(y / (0.25 * Math.PI));
-    let width = (current / biggest) * 0.41 * 100;
-    return width;
+    });
   }
 }

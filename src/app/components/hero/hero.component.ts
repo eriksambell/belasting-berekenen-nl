@@ -37,7 +37,7 @@ export class HeroComponent {
   public submit(): void {
     this.totalTax.emit({
       income: this.fields[0].value,
-      age: this.fields[0].value,
+      age: this.fields[1].value,
     });
   }
 }

@@ -1,8 +1,4 @@
-import {
-  NORMAL_TAX_RATES,
-  PENSION_AGE,
-  PENSION_TAX_RATES,
-} from "./tax.constant";
+import { NORMAL_TAX_RATES, PENSION_AGE, PENSION_TAX_RATES } from "./tax.constant";
 
 export interface UserInput {
   income: number;
@@ -19,9 +15,10 @@ export class CalculateTax {
     rate: number;
   }[];
 
-  constructor(income: number, age: number) {
-    this.taxRates = age < PENSION_AGE ? NORMAL_TAX_RATES : PENSION_TAX_RATES;
-    this.brackets = this.calcBrackets(income);
+  constructor(userInput: UserInput) {
+    this.user = userInput;
+    this.taxRates = userInput.age < PENSION_AGE ? NORMAL_TAX_RATES : PENSION_TAX_RATES;
+    this.brackets = this.calcBrackets(userInput.income);
   }
 
   private calcBrackets(income: number): number[] {
@@ -30,10 +27,8 @@ export class CalculateTax {
     let brackets = [];
     this.taxRates.forEach((bracket, index: number) => {
       if (income >= bracket.lowerBound) {
-        const previousUpperBound =
-          index === 0 ? 0 : this.taxRates[index - 1].upperBound;
-        const amountInBracket =
-          Math.min(income, bracket.upperBound) - previousUpperBound;
+        const previousUpperBound = index === 0 ? 0 : this.taxRates[index - 1].upperBound;
+        const amountInBracket = Math.min(income, bracket.upperBound) - previousUpperBound;
         brackets.push(amountInBracket * bracket.rate);
       }
     });
