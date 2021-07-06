@@ -1,21 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-footer",
   templateUrl: "./footer.component.html",
   styleUrls: ["./footer.component.scss"],
 })
-export class FooterComponent implements OnInit {
-  currentYear: number;
-
+export class FooterComponent {
   @Output()
-  dataEvent = new EventEmitter<any>();
+  linkClick = new EventEmitter<void>();
 
-  ngOnInit(): void {
-    this.currentYear = new Date().getFullYear();
-  }
+  currentYear = new Date().getFullYear();
 
   public onLinkClick(): void {
-    this.dataEvent.emit(undefined);
+    this.linkClick.emit();
   }
 }
