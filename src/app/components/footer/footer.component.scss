@@ -1,0 +1,144 @@
+.footer {
+  background-color: #443266;
+  padding-top: 60px;
+  clear: both;
+  min-height: 323px;
+
+  &-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__description {
+    margin-bottom: 50px;
+  }
+
+  &__links {
+    ul {
+      margin-right: 30px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      li {
+        margin: 15px 0;
+        font-weight: 500;
+      }
+    }
+
+    a {
+      line-height: 1.5;
+
+      &::before {
+        content: "\f054";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 700;
+        margin-right: 15px;
+        margin-bottom: 5px;
+        display: block;
+        float: left;
+        position: relative;
+        left: 0;
+        transition: all 500ms ease;
+      }
+
+      &:hover::before {
+        left: 5px;
+        transition: all 500ms ease;
+      }
+    }
+  }
+
+  &__contact {
+    &-telnr::before,
+    &-mail::before {
+      margin-right: 15px;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 600;
+      color: #f1f0ff;
+      font-size: 120%;
+      position: relative;
+      top: 1px;
+    }
+
+    &-telnr::before {
+      content: "\f095";
+    }
+
+    &-mail::before {
+      content: "\f0e0";
+    }
+  }
+
+  &__copyright {
+    text-align: center;
+    padding-bottom: 20px;
+
+    &::before {
+      display: block;
+      content: "";
+      height: 1px;
+      width: 90%;
+      max-width: 1050px;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 30px auto;
+      position: relative;
+    }
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin: 20px 0 10px 0;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 85%;
+  }
+
+  a {
+    font-size: 85%;
+    transition: all 200ms ease;
+    &:hover {
+      transition: all 200ms ease;
+    }
+  }
+}
+
+/* Footer copyright */
+
+@media screen and (min-width: 480px) {
+  .footer {
+    &__description {
+      width: 384px;
+    }
+
+    &__links {
+      margin-right: 50px;
+    }
+
+    &-col2 {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .footer {
+    &-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__description {
+      margin-right: 60px;
+      margin-bottom: 0;
+      width: 300px;
+    }
+  }
+}
