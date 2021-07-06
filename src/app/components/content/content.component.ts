@@ -4,7 +4,6 @@ import { BUDGET, BudgetItem } from "src/app/shared/budget.constant";
 @Component({
   selector: "app-content",
   templateUrl: "./content.component.html",
-  styleUrls: ["./content.component.scss"],
 })
 export class ContentComponent implements OnInit {
   revenue: number;
