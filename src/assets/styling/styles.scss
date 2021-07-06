@@ -86,13 +86,6 @@ footer a::before {
   -webkit-text-stroke: 0.2px rgba(140, 72, 159, 0.5);
 }
 
-.logo,
-.logo a,
-header p {
-  color: #f1f0ff;
-  -webkit-text-stroke: 0.2px rgba(241, 240, 255, 0.5);
-}
-
 p {
   font-size: 14px;
   line-height: 1.7;
@@ -105,14 +98,18 @@ p {
   font-size: 165%;
   letter-spacing: 1px;
   transition: all 500ms ease;
-  -webkit-user-select: none; /* Chrome + Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE 10+ */
   user-select: none;
+
+  a {
+    transition: all 200ms ease;
+  }
 }
 
-.logo a {
-  transition: all 500ms ease;
+.logo,
+.logo a,
+.logo + .subtitle {
+  color: #f1f0ff;
+  -webkit-text-stroke: 0.2px rgba(241, 240, 255, 0.5);
 }
 
 h2,
