@@ -20,7 +20,7 @@ interface Level {
   styleUrls: ["./results.component.scss"],
 })
 export class ResultsComponent implements OnInit, OnChanges {
-  @Input() data: UserInput;
+  @Input() user: UserInput;
 
   budget: BudgetItem[] = BUDGET;
   totalBudget: number;
@@ -44,7 +44,7 @@ export class ResultsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.data) {
+    if (this.user) {
       this.totalTax = this.getTotalTax();
       this.totalBudget = this.getTotalBudget();
     }
@@ -90,7 +90,7 @@ export class ResultsComponent implements OnInit, OnChanges {
   }
 
   private getTotalTax(): number {
-    const tax = new Tax(this.data);
+    const tax = new Tax(this.user);
     return tax.brackets.reduce((sum: number, current: number) => sum + current);
   }
 

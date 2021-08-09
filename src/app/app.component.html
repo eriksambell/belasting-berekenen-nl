@@ -1,12 +1,12 @@
 <div class="wrapper">
   <app-header></app-header>
 
-  <app-hero (totalTax)="receiveData($event)"></app-hero>
+  <app-hero (totalTax)="getUserInput($event)"></app-hero>
 
   <main>
-    <app-results [data]="data"></app-results>
+    <app-results [user]="user"></app-results>
     <router-outlet></router-outlet>
   </main>
 
-  <app-footer (linkClick)="receiveData($event)"></app-footer>
+  <app-footer (linkClick)="getUserInput($event)"></app-footer>
 </div>

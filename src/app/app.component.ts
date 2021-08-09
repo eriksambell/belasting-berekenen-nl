@@ -7,9 +7,9 @@ import { UserInput } from "./shared/tax";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  data: UserInput | undefined;
+  user: UserInput | undefined;
 
-  receiveData(event: UserInput | undefined) {
-    this.data = event;
+  public getUserInput(event: UserInput | undefined): void {
+    this.user = event;
   }
 }
