@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
-import { CalculateTax, UserInput } from "src/app/shared/calculateTax";
+import { Tax, UserInput } from "src/app/shared/tax";
 import { BUDGET, BudgetItem } from "../../shared/budget.constant";
 
 interface Position {
@@ -90,7 +90,7 @@ export class ResultsComponent implements OnInit, OnChanges {
   }
 
   private getTotalTax(): number {
-    const tax = new CalculateTax(this.data);
+    const tax = new Tax(this.data);
     return tax.brackets.reduce((sum: number, current: number) => sum + current);
   }
 

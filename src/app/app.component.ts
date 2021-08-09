@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { UserInput } from "./shared/calculateTax";
+import { UserInput } from "./shared/tax";
 
 @Component({
   selector: "app-root",

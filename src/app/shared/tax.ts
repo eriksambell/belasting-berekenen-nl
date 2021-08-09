@@ -1,11 +1,11 @@
-import { NORMAL_TAX_RATES, PENSION_AGE, PENSION_TAX_RATES } from "./tax.constant";
+import { NORMAL_TAX_RATES, PENSION_AGE, PENSION_TAX_RATES } from "./tax-rates.constant";
 
 export interface UserInput {
   income: number;
   age: number;
 }
 
-export class CalculateTax {
+export class Tax {
   user: UserInput;
   brackets: number[] = [];
   taxRates: {

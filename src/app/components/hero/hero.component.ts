@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
-import { UserInput } from "src/app/shared/calculateTax";
+import { UserInput } from "src/app/shared/tax";
 
 interface FormInput {
   id: string;
