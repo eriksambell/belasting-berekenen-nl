@@ -1,4 +1,4 @@
-#wrapper {
+.wrapper {
   min-width: 360px;
   width: 100%;
   position: relative;
@@ -6,8 +6,4 @@
 
 main {
   min-height: calc(100vh - 585px);
-}
-
-h2 {
-  color: hotpink;
 }
