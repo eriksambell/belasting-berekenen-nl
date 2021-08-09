@@ -1,7 +1,7 @@
 <div class="wrapper">
   <app-header></app-header>
 
-  <app-hero (totalTax)="getUserInput($event)"></app-hero>
+  <app-hero (user)="getUserInput($event)"></app-hero>
 
   <main>
     <app-results [user]="user"></app-results>

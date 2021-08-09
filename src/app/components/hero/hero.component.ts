@@ -17,7 +17,7 @@ interface FormInput {
 })
 export class HeroComponent {
   @Output()
-  totalTax = new EventEmitter<UserInput>();
+  user = new EventEmitter<UserInput>();
 
   fields: FormInput[] = [
     {
@@ -35,7 +35,7 @@ export class HeroComponent {
   ];
 
   public submit(): void {
-    this.totalTax.emit({
+    this.user.emit({
       income: this.fields[0].value,
       age: this.fields[1].value,
     });
