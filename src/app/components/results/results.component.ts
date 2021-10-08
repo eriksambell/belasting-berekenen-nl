@@ -1,18 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { Tax, User } from "src/app/shared/tax";
 import { BUDGET, BudgetItem } from "../../shared/budget.constant";
-
-interface Position {
-  left: number;
-  bottom: number;
-}
-
-interface Level {
-  id: number;
-  width: number;
-  height: number;
-  fromLeft: number;
-}
+import { Level } from "./level";
+import { Position } from "./position";
 
 @Component({
   selector: "app-results",
@@ -27,14 +17,7 @@ export class ResultsComponent implements OnInit, OnChanges {
   totalTax: number;
 
   positions: Position[] = [];
-  levels: Level[] = [
-    {
-      id: 0,
-      width: 100,
-      height: 0,
-      fromLeft: 0,
-    },
-  ];
+  levels: Level[] = [Level.getInitialValues()];
 
   widthFirstBox = 41 / 100; // relative width
   loadingDelay = 200; // in milliseconds
@@ -110,18 +93,10 @@ export class ResultsComponent implements OnInit, OnChanges {
       const usedLevel: Level = this.levels.find((level: Level) => level.width > boxSize);
 
       // set positions for box
-      this.positions.push({
-        left: usedLevel.fromLeft,
-        bottom: usedLevel.height,
-      });
+      this.positions.push(new Position(usedLevel));
 
       // set new level
-      this.levels.push({
-        id: usedLevel.id,
-        width: boxSize,
-        height: usedLevel.height + boxSize,
-        fromLeft: usedLevel.id + 1 !== this.levels.length ? usedLevel.fromLeft : 0,
-      });
+      this.levels.push(new Level(this.levels, usedLevel, boxSize));
 
       // update level on which box is placed
       usedLevel.width -= boxSize;
