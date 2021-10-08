@@ -5,12 +5,13 @@ export class Level {
   fromLeft: number;
 
   constructor(allLevels: Level[], usedLevel: Level, boxSize: number) {
-    if (allLevels && usedLevel && boxSize) {
-      this.id = usedLevel.id;
-      this.width = boxSize;
-      this.height = usedLevel.height + boxSize;
-      this.fromLeft = usedLevel.id + 1 !== allLevels.length ? usedLevel.fromLeft : 0;
+    if (!allLevels || !usedLevel || !boxSize) {
+      throw new Error("Invalid: input was not complete");
     }
+    this.id = usedLevel.id;
+    this.width = boxSize;
+    this.height = usedLevel.height + boxSize;
+    this.fromLeft = usedLevel.id + 1 !== allLevels.length ? usedLevel.fromLeft : 0;
   }
 
   public static getInitialValues(): Level {

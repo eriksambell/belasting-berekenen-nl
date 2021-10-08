@@ -16,6 +16,7 @@ export class Tax {
   }[];
 
   constructor(userInput: User) {
+    if (!userInput) throw new Error("Invalid: no user input was provided");
     this.user = userInput;
     this.taxRates = userInput.age < PENSION_AGE ? NORMAL_TAX_RATES : PENSION_TAX_RATES;
     this.brackets = this.calcBrackets(userInput.income);
