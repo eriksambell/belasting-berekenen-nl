@@ -1,12 +1,12 @@
 import { NORMAL_TAX_RATES, PENSION_AGE, PENSION_TAX_RATES } from "./tax-rates.constant";
 
-export interface UserInput {
+export interface User {
   income: number;
   age: number;
 }
 
 export class Tax {
-  user: UserInput;
+  user: User;
   brackets: number[] = [];
   taxRates: {
     bracket: number;
@@ -15,7 +15,7 @@ export class Tax {
     rate: number;
   }[];
 
-  constructor(userInput: UserInput) {
+  constructor(userInput: User) {
     this.user = userInput;
     this.taxRates = userInput.age < PENSION_AGE ? NORMAL_TAX_RATES : PENSION_TAX_RATES;
     this.brackets = this.calcBrackets(userInput.income);

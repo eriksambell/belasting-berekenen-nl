@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
-import { Tax, UserInput } from "src/app/shared/tax";
+import { Tax, User } from "src/app/shared/tax";
 import { BUDGET, BudgetItem } from "../../shared/budget.constant";
 
 interface Position {
@@ -20,7 +20,7 @@ interface Level {
   styleUrls: ["./results.component.scss"],
 })
 export class ResultsComponent implements OnInit, OnChanges {
-  @Input() user: UserInput;
+  @Input() user: User;
 
   budget: BudgetItem[] = BUDGET;
   totalBudget: number;

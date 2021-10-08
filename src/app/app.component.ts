@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { UserInput } from "./shared/tax";
+import { User } from "./shared/tax";
 
 @Component({
   selector: "app-root",
@@ -7,9 +7,9 @@ import { UserInput } from "./shared/tax";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  user: UserInput | undefined;
+  user: User | undefined;
 
-  public getUserInput(event: UserInput | undefined): void {
+  public getUserInput(event: User | undefined): void {
     this.user = event;
   }
 }

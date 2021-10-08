@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
-import { UserInput } from "src/app/shared/tax";
+import { User } from "src/app/shared/tax";
 
 interface FormInput {
   id: string;
@@ -17,7 +17,7 @@ interface FormInput {
 })
 export class HeroComponent {
   @Output()
-  user = new EventEmitter<UserInput>();
+  user = new EventEmitter<User>();
 
   fields: FormInput[] = [
     {
