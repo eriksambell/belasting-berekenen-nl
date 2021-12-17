@@ -2,12 +2,10 @@
   "name": "belasting-berekenen",
   "version": "1.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve --live-reload -o",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +22,6 @@
     "@angular/platform-browser-dynamic": "^12.1.5",
     "@angular/router": "^12.1.5",
     "core-js": "^2.6.12",
-    "prettier": "^2.5.1",
     "rxjs": "^6.6.7",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
@@ -45,6 +42,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
+    "prettier": "^2.5.1",
     "protractor": "~7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
